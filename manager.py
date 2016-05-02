@@ -10,6 +10,8 @@ import argparse
 import urllib.request, urllib.parse, urllib.error
 import json
 
+from script import mainScript
+
 
 parser = argparse.ArgumentParser(description='Tose App - manager.py')
 parser.add_argument('action', type=str, help='Action')
@@ -22,6 +24,7 @@ args = parser.parse_args()
 serie = args.serie
 season = ""
 episode = ""
+
 if  args.serie == "":
     parser.error("Invalid serie")
 if len(str(args.s)) > 2 and args.e != None:
@@ -63,21 +66,28 @@ if args.action.lower() == 'add':
 
 
 def job():
-    print(time.strftime("[%H:%M:%S]", time.gmtime()))
+    print(time.strftime("[%H:%M:%S]", time.localtime()))
     for entry in jsondata:
         print(entry)
         
-        command = "python script.py " + entry["serie"] + " -s " + entry["season"] + " -e " + entry["episode"]
-        if entry["season"] == "":
-            command = "python script.py " + entry["serie"] + " -e " + entry["episode"]
-        if entry["episode"] == "":
-            command = "python script.py " + entry["serie"] + " -s " + entry["season"]
-        # print(command)
-        os.system(command)
+        # command = "python script.py " + entry["serie"] + " -s " + entry["season"] + " -e " + entry["episode"]
+        # if entry["season"] == "":
+        #     command = "python script.py " + entry["serie"] + " -e " + entry["episode"]
+        # if entry["episode"] == "":
+        #     command = "python script.py " + entry["serie"] + " -s " + entry["season"]
+        # # print(command)
+        # os.system(command)
+        
+        if entry["season"] and entry["episode"]:
+            mainScript(entry["serie"], entry["season"], entry["episode"])
+        elif entry["season"] == "":
+            mainScript(entry["serie"], None, entry["episode"])
+        elif entry["episode"] == "":
+            mainScript(entry["serie"], entry["season"], None)
 
 
 ## Calls job() every 15 minutes. Use every(0.1) when testing code. (Runs every 0.1 mins => 10 secs). Change back to 15 later.
-schedule.every(15).minutes.do(job)
+schedule.every(0.1).minutes.do(job)
 
 ## Run for the first time
 job()
