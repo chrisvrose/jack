@@ -7,7 +7,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Tose App')
 
 parser.add_argument('serie', type=str,
-                    help='Serie')
+                    help='Serie', nargs='*')
 
 # Season
 parser.add_argument('-s', type=int,
@@ -25,4 +25,4 @@ if len(str(args.e)) > 2:
     parser.error("Episode number cannot be larger than 2")
 
 print("Argument values:")
-print(("Serie: " + args.serie + "\t" + "Season: " + str(args.s) + "\t" + "Episode: " + str(args.e)))
+print(("Serie: " + ' '.join(args.serie) + "\t" + "Season: " + str(args.s) + "\t" + "Episode: " + str(args.e)))

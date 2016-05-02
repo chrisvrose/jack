@@ -67,11 +67,11 @@ def job():
     for entry in jsondata:
         print(entry)
         
-        command = "python script.py '" + entry["serie"] + "' -s " + entry["season"] + " -e " + entry["episode"]
+        command = "python script.py " + entry["serie"] + " -s " + entry["season"] + " -e " + entry["episode"]
         if entry["season"] == "":
-            command = "python script.py '" + entry["serie"] + "' -e " + entry["episode"]
+            command = "python script.py " + entry["serie"] + " -e " + entry["episode"]
         if entry["episode"] == "":
-            command = "python script.py '" + entry["serie"] + "' -s " + entry["season"]
+            command = "python script.py " + entry["serie"] + " -s " + entry["season"]
         # print(command)
         os.system(command)
 

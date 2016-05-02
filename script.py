@@ -4,7 +4,7 @@
 ## Run this manually by:
 ## python script.py <serie> -s <season no.> -e <episode no.>
 ## -s and -e are optional. Read lines 57-68. Use whenever possible for best results.
-## eg.: python script.py "The Flash" -s 2 -e 14
+## eg.: python script.py The Flash -s 2 -e 14
 
 import feedparser
 import urllib.parse
@@ -27,7 +27,7 @@ args = parser.parse_args()
 
 
 #### Making sure that the serie, season and episode are not invalid ####
-serie = urllib.parse.quote(args.serie, safe='')
+serie = urllib.parse.quote(' '.join(args.serie), safe='')
 season = ""
 episode = ""
 if  args.serie == "":
