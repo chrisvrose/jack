@@ -15,7 +15,7 @@ import os, json
 #### Get arguments passed ####
 parser = argparse.ArgumentParser(description='Tose App - More description goes here.')
 # Serie
-parser.add_argument('serie', type=str, help='Serie')
+parser.add_argument('serie', type=str, help='Serie', nargs='*')
 # Season
 parser.add_argument('-s', type=int, help='Season')
 # Episode
