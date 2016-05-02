@@ -12,7 +12,7 @@ def job():
     os.system("python script.py 'quantico' -s 1 -e 20")
 
 
-## Calls job() every 15 minutes.
+## Calls job() every 15 minutes. Use every(0.1) when testing code. (Runs every 0.1 mins => 10 secs). Change back to 15 later.
 schedule.every(15).minutes.do(job)
 
 ## Run for the first time

@@ -90,7 +90,7 @@ for index in range(len(rssdata["entries"])):                                    
 print "Count: ", counter
 
 if counter > 0:                                                                     # If at least 1 good result
-    command = "python3 hangupsapi/examples/send_message.py \""+resultLinks[0]+"\""  # Set var "python hangupsapi/examples/send_message.py <oldest link>"
+    command = "python3 send_message.py \""+resultLinks[0]+"\""  # Set var "python hangupsapi/examples/send_message.py <oldest link>"
     print command
     os.system(command)                                                              # Run the command to send hangouts message.
 
