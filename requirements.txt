@@ -1,0 +1,3 @@
+schedule
+feedparser
+git+https://github.com/tdryer/hangups
