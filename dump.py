@@ -1,3 +1,6 @@
+## dump.py (optional)
+## Playing around with kat.cr rss feeds. Just dumps the results in output.
+
 import feedparser
 
 url = "https://kat.cr/usearch/blacklist%20s03%20category%3Atv/?field=time_add&sorder=desc&rss=1"

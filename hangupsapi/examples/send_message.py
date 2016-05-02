@@ -15,7 +15,6 @@ CONVERSATION_ID = 'UgyT6DYhh50bUOijMVh4AaABAQ'
 # Plain-text content of the message to send.
 MESSAGE = sys.argv[1]
 print(MESSAGE)
-#exit()
 
 # Path where OAuth refresh token is saved, allowing hangups to remember your
 # credentials.
