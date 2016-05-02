@@ -8,7 +8,7 @@ import time
 import os
 
 def job():
-    print(time.strftime("[%H:%M:%S]", time.gmtime()))
+    print time.strftime("[%H:%M:%S]", time.gmtime())
     os.system("python script.py 'quantico' -s 1 -e 20")
 
 

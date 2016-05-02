@@ -6,7 +6,7 @@
 ## eg.: python script.py "The Flash" -s 2 -e 14
 
 import feedparser
-import urllib.request, urllib.parse, urllib.error
+import urllib
 import argparse
 import os
 
@@ -26,7 +26,7 @@ args = parser.parse_args()
 
 
 #### Making sure that the serie, season and episode are not invalid ####
-serie = urllib.parse.quote(args.serie, safe='')
+serie = urllib.quote(args.serie, safe='')
 season = ""
 episode = ""
 if  args.serie == "":
@@ -43,7 +43,7 @@ elif args.e != None:
 
 #### Printing just for fun ####
 print("Argument values:")
-print(("Serie: " + serie + "\t" + "Season: " + season + "\t" + "Episode: " + episode))
+print("Serie: " + serie + "\t" + "Season: " + season + "\t" + "Episode: " + episode)
 
 
 #### Init some variables that are required. ####
@@ -59,17 +59,17 @@ resultLinks = []                # Stores all links of optimal results
 if season and episode:              # Both season and episode
     url = "https://kat.cr/usearch/" + serie + "%20s"+season + "e"+episode + "%20category%3Atv/?field=time_add&sorder=asc&rss=1"
 if not season and episode:          # Only episode
-    print("For better results, include season. Returning episode of the latest season.")
+    print "For better results, include season. Returning episode of the latest season."
     url = "https://kat.cr/usearch/" + serie + "%20e"+episode + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
 if not episode and season:          # Only season
-    print("For better results, include episode. Returning latest episode of the season.")
+    print "For better results, include episode. Returning latest episode of the season."
     url = "https://kat.cr/usearch/" + serie + "%20s"+season + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
 if not season and not episode:      # No episode or season
-    print("Providing latest result only. Not really accurate.")
+    print "Providing latest result only. Not really accurate."
     url = "https://kat.cr/usearch/" + serie + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
 
 # Print url for fun.
-print(url)
+print url
 
 
 #### Make the request
@@ -81,16 +81,16 @@ for index in range(len(rssdata["entries"])):                                    
     link = rssdata["entries"][index]["links"][0]["href"]                            # Set link
     if size < 500:                                                                  # Continue with entry only if size < 500 MB
         if 'LOL' in title or 'ettv' in title or 'rartv' in title:                   # Make sure the title is reputable. The keywords help.
-            print(str(round(size)), " - ", title, " (", link, ")")                          # List all good results when script runs
+            print str(size), " - ", title, " (", link, ")"                          # List all good results when script runs
             resultSizes.append(size)                                                # Store size of entry
             resultTitles.append(title)                                              # Store title of entry
             resultLinks.append(link)                                                # Store link of entry
             counter += 1                                                            # Increment counter as good result.
 
-print("Count: ", counter)
+print "Count: ", counter
 
 if counter > 0:                                                                     # If at least 1 good result
     command = "python3 send_message.py \""+resultLinks[0]+"\""  # Set var "python hangupsapi/examples/send_message.py <oldest link>"
-    print("Sending hangouts message: ", command)
+    print command
     os.system(command)                                                              # Run the command to send hangouts message.
 

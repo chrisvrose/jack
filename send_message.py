@@ -12,7 +12,7 @@ CONVERSATION_ID = 'UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ'
 
 # Plain-text content of the message to send.
 MESSAGE = sys.argv[1]
-print(MESSAGE)
+print("Sent hangouts message: ", MESSAGE)
 
 # Path where OAuth refresh token is saved, allowing hangups to remember yourcredentials.
 REFRESH_TOKEN_PATH = 'refresh_token.txt'
