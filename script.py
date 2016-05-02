@@ -1,3 +1,4 @@
+#!python3
 ## script.py
 ## This script does most of the work. Heavily commented.
 ## Run this manually by:

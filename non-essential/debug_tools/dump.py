@@ -1,3 +1,4 @@
+#!python3
 ## dump.py (optional)
 ## Playing around with kat.cr rss feeds. Just dumps the results in output.
 

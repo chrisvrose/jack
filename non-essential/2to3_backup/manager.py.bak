@@ -1,3 +1,4 @@
+#!python2
 ## manager.py
 ## This is the main script to run as it runs script.py periodically.
 ## For syntax of calling script.py, check first few commented into lines of script.py

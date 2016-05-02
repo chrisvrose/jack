@@ -1,3 +1,4 @@
+#!python3
 ## argsparse.py (optional)
 ## This file is just to get an idea how arguments passed are parsed inside the scripts.
 
