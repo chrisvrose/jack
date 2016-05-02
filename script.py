@@ -7,9 +7,9 @@
 ## eg.: python script.py "The Flash" -s 2 -e 14
 
 import feedparser
-import urllib.request, urllib.parse, urllib.error
+import urllib.parse
 import argparse
-import os
+import os, json
 
 
 #### Get arguments passed ####
@@ -58,13 +58,13 @@ resultLinks = []                # Stores all links of optimal results
 
 #### Setting the `url` variable depending on wether season and episode is provided ####
 if season and episode:              # Both season and episode
-    url = "https://kat.cr/usearch/" + serie + "%20s"+season + "e"+episode + "%20category%3Atv/?field=time_add&sorder=asc&rss=1"
+    url = "https://thekat.tv/usearch/" + serie + "%20s"+season + "e"+episode + "%20category%3Atv/?field=time_add&sorder=asc&rss=1"
 if not season and episode:          # Only episode
     print("For better results, include season. Returning episode of the latest season.")
-    url = "https://kat.cr/usearch/" + serie + "%20e"+episode + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
+    url = "https://thekat.tv/usearch/" + serie + "%20e"+episode + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
 if not episode and season:          # Only season
     print("For better results, include episode. Returning latest episode of the season.")
-    url = "https://kat.cr/usearch/" + serie + "%20s"+season + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
+    url = "https://thekat.tv/usearch/" + serie + "%20s"+season + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
 if not season and not episode:      # No episode or season
     print("Providing latest result only. Not really accurate.")
     url = "https://kat.cr/usearch/" + serie + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
@@ -94,4 +94,16 @@ if counter > 0:                                                                 
     command = "python send_message.py \""+resultLinks[0]+"\""  # Set var "python hangupsapi/examples/send_message.py <oldest link>"
     print("Sending hangouts message: ", command)
     os.system(command)                                                              # Run the command to send hangouts message.
-
+    f = open("data.js", "r+")
+    jsondata = json.loads(f.read())
+    print("script.py::jsondata", jsondata)
+    for i in range(len(jsondata)):
+        print("script.py::jsondata[i]['serie']::", jsondata[i]["serie"])
+        if jsondata[i]["serie"] == urllib.parse.unquote(serie):
+            print("removed: ", jsondata[i]["serie"])
+            jsondata.pop(i)
+            break
+    f.close()
+    f = open("data.js", "w+")
+    f.write(json.dumps(jsondata))
+    f.close()
