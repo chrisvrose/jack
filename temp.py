@@ -1,4 +1,4 @@
-from script import mainScript
+from send_message import mainScript
 
 mainScript("Quantico")
 exit()

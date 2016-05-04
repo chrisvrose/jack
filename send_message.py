@@ -4,7 +4,7 @@ import hangups
 import sys
 
 # ID of the conversation to send the message to.
-CONVERSATION_ID = 'UgyT6DYhh50bUOijMVh4AaABAQ'
+CONVERSATION_ID = 'UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ'
 
 ## Some conversation IDs for testing.
 # Rithvik Vibhu: UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ

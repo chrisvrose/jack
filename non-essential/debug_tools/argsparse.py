@@ -6,8 +6,10 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Tose App')
 
+parser.add_argument('--add', action='store_true')
+
 parser.add_argument('serie', type=str,
-                    help='Serie', nargs='*')
+                    help='Serie', nargs='+')
 
 # Season
 parser.add_argument('-s', type=int,
@@ -26,3 +28,4 @@ if len(str(args.e)) > 2:
 
 print("Argument values:")
 print(("Serie: " + ' '.join(args.serie) + "\t" + "Season: " + str(args.s) + "\t" + "Episode: " + str(args.e)))
+print("Add: ", args.add)

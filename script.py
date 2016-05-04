@@ -12,26 +12,10 @@ import argparse
 import os, json
 
 
-#### Get arguments passed ####
-parser = argparse.ArgumentParser(description='Tose App - More description goes here.')
-# Serie
-parser.add_argument('serie', type=str, help='Serie', nargs='+')
-# Season
-parser.add_argument('-s', type=int, help='Season')
-# Episode
-parser.add_argument('-e', type=int, help='Episode')
-
-
-# All variables stored in 'args' array
-args = parser.parse_args()
-
-serie = urllib.parse.quote(' '.join(args.serie), safe='')
-
-#### Making sure that the serie, season and episode are not invalid ####
 def mainScript(serie, season="", episode=""):
     
-    
-    if  args.serie == "":
+    #### Making sure that the serie, season and episode are not invalid ####
+    if  serie == "":
         parser.error("Invalid serie")
     if len(str(season)) > 2 and season != None and episode != None:
         parser.error("Season number cannot be larger than 2")
@@ -42,7 +26,6 @@ def mainScript(serie, season="", episode=""):
     elif episode != None:
         episode = '%02d' % int(episode)
     
-    
     #### Printing just for fun ####
     print("Argument values:")
     print("Serie: ", serie + "\t", "Season: ", season, "\t", "Episode: ", episode)
@@ -52,10 +35,9 @@ def mainScript(serie, season="", episode=""):
     resultSizes = []                # Stores all sizes of optimal results
     resultTitles = []               # Stores all titles of optimal results
     resultLinks = []                # Stores all links of optimal results
+    resultMagnets = []
     
     # For Reference: # url = "https://kat.cr/usearch/" + serie + "%20s"+season + "e"+episode + "%20category%3Atv/?field=time_add&sorder=asc&rss=1"
-    
-    
     #### Setting the `url` variable depending on wether season and episode is provided ####
     if season and episode:              # Both season and episode
         url = "https://thekat.tv/usearch/" + serie + "%20s"+season + "e"+episode + "%20category%3Atv/?field=time_add&sorder=asc&rss=1"
@@ -80,20 +62,34 @@ def mainScript(serie, season="", episode=""):
         size = int(rssdata["entries"][index]["torrent_contentlength"])/1024/1024        # Set size
         title = rssdata["entries"][index]["title"]                                      # Set title
         link = rssdata["entries"][index]["links"][0]["href"]                            # Set link
+        magnet = rssdata["entries"][index]["torrent_magneturi"]
         if size < 500:                                                                  # Continue with entry only if size < 500 MB
             if 'LOL' in title or 'ettv' in title or 'rartv' in title:                   # Make sure the title is reputable. The keywords help.
                 print(str(round(size)), " - ", title, " (", link, ")")                          # List all good results when script runs
                 resultSizes.append(size)                                                # Store size of entry
                 resultTitles.append(title)                                              # Store title of entry
                 resultLinks.append(link)                                                # Store link of entry
+                resultMagnets.append(magnet)
                 counter += 1                                                            # Increment counter as good result.
     
     print("Count: ", counter)
     
     if counter > 0:                                                                     # If at least 1 good result
-        command = "python3 send_message.py \""+resultLinks[0]+"\""  # Set var "python hangupsapi/examples/send_message.py <oldest link>"
-        print("Sending hangouts message: ", command)
-        os.system(command)                                                              # Run the command to send hangouts message.
+        messageToSend = resultTitles[0]
+        command = "python send_message.py \""+messageToSend+"\""  # Set var "python hangupsapi/examples/send_message.py <oldest link>"
+        print("Sending hangouts message: ", messageToSend)
+        os.system(command)
+        
+        messageToSend = "Link: " + resultLinks[0]
+        command = "python send_message.py \""+messageToSend+"\""
+        print("Sending hangouts message: ", messageToSend)
+        os.system(command)
+        
+        messageToSend = "Magnet: " + resultMagnets[0]
+        command = "python send_message.py \""+messageToSend+"\""
+        print("Sending hangouts message: ", messageToSend)
+        os.system(command)
+        
         f = open("data.js", "r+")
         jsondata = json.loads(f.read())
         print("script.py::jsondata", jsondata)
@@ -109,4 +105,14 @@ def mainScript(serie, season="", episode=""):
         f.close()
 
 
-# mainScript(serie, args.s, args.e)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Tose App - script.py')
+    parser.add_argument('serie', type=str, help='Serie', nargs='+')
+    parser.add_argument('-s', type=int, help='Season')
+    parser.add_argument('-e', type=int, help='Episode')
+    args = parser.parse_args()
+    serie = urllib.parse.quote(' '.join(args.serie), safe='')
+    
+    mainScript(serie, args.s, args.e)
+else:
+    print("[script] ",__name__, " module loaded")
