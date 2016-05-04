@@ -23,6 +23,7 @@ args = parser.parse_args()
 serie = ' '.join(args.serie).title()
 season = ""
 episode = ""
+mainScriptReturn = 0
 
 if len(str(args.s)) > 2 and args.s != None:
     parser.error("Season number cannot be larger than 2")
@@ -66,6 +67,7 @@ if args.add:
 # exit()
 
 def job():
+    global mainScriptReturn
     print(time.strftime("[%H:%M:%S]", time.localtime()))
     for entry in jsondata:
         print(entry)
@@ -79,11 +81,14 @@ def job():
         # os.system(command)
         
         if entry["season"] and entry["episode"]:
-            print("[manager][mainScript]", mainScript(entry["serie"], entry["season"], entry["episode"]) )
+            mainScriptReturn = mainScript(entry["serie"], entry["season"], entry["episode"])
+            print("[manager][mainScript]",  mainScriptReturn)
         elif entry["season"] == "":
-            print("[manager][mainScript]", mainScript(entry["serie"], None, entry["episode"]) )
+            mainScriptReturn = mainScript(entry["serie"], None, entry["episode"])
+            print("[manager][mainScript]",  mainScriptReturn)
         elif entry["episode"] == "":
-            print("[manager][mainScript]", mainScript(entry["serie"], entry["season"], None) )
+            mainScriptReturn = mainScript(entry["serie"], entry["season"], None)
+            print("[manager][mainScript]",  mainScriptReturn)
 
 
 ## Calls job() every 15 minutes. Use every(0.1) when testing code. (Runs every 0.1 mins => 10 secs). Change back to 15 later.
@@ -96,7 +101,9 @@ job()
 while True:
     checkfile = open("data.js", "r")
     print("[manager][checkfile] ", checkfile.read(), len(checkfile.read()))
-    if not len(checkfile.read()):
+    # if not len(checkfile.read()):
+    if mainScriptReturn != 0:
+        print("breaking... (mainScriptReturn: ",mainScriptReturn,")")
         break
     schedule.run_pending()
     time.sleep(1)

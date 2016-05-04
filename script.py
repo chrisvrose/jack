@@ -43,10 +43,10 @@ def mainScript(serie, season="", episode=""):
         url = "https://thekat.tv/usearch/" + serie + "%20s"+season + "e"+episode + "%20category%3Atv/?field=time_add&sorder=asc&rss=1"
     if not season and episode:          # Only episode
         print("For better results, include season. Returning episode of the latest season.")
-        url = "https://thekat.tv/usearch/" + serie + "%20e"+episode + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
+        url = "http://thekat.tv/usearch/" + serie + "%20e"+episode + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
     if not episode and season:          # Only season
         print("For better results, include episode. Returning latest episode of the season.")
-        url = "https://thekat.tv/usearch/" + serie + "%20s"+season + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
+        url = "http://thekat.tv/usearch/" + serie + "%20s"+season + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
     if not season and not episode:      # No episode or season
         print("Providing latest result only. Not really accurate.")
         url = "https://kat.cr/usearch/" + serie + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
@@ -103,6 +103,8 @@ def mainScript(serie, season="", episode=""):
         f = open("data.js", "w+")
         f.write(json.dumps(jsondata))
         f.close()
+        
+    return counter
 
 
 if __name__ == "__main__":
