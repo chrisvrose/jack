@@ -102,8 +102,9 @@ while True:
     checkfile = open("data.js", "r")
     print("[manager][checkfile] ", checkfile.read(), len(checkfile.read()))
     # if not len(checkfile.read()):
+    print("[manager][while_loop] mainScriptReturn: ", mainScriptReturn)
     if mainScriptReturn != 0:
-        print("breaking... (mainScriptReturn: ",mainScriptReturn,")")
+        print("breaking...")
         break
     schedule.run_pending()
     time.sleep(1)

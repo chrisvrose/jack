@@ -1,1 +1,1 @@
-[{"episode": "18", "season": "04", "serie": "Arrow"}]
+[{"serie": "Arrow", "episode": "20", "season": "04"}]
