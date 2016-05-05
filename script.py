@@ -14,6 +14,8 @@ import os, json
 
 def mainScript(serie, season="", episode=""):
     
+    KAT_BASE = "https://thekat.tv/"
+    
     #### Making sure that the serie, season and episode are not invalid ####
     if  serie == "":
         parser.error("Invalid serie")
@@ -40,19 +42,16 @@ def mainScript(serie, season="", episode=""):
     # For Reference: # url = "https://kat.cr/usearch/" + serie + "%20s"+season + "e"+episode + "%20category%3Atv/?field=time_add&sorder=asc&rss=1"
     #### Setting the `url` variable depending on wether season and episode is provided ####
     if season and episode:              # Both season and episode
-        katurl = "https://thekat.tv/usearch/" + serie + "%20s"+season + "e"+episode + "%20category%3Atv/?field=time_add&sorder=asc&rss=1"
-        url = "https://proxy-nl.hide.me/go.php?u=" + urllib.parse.quote(katurl, safe='') + "&b=4"
+        url = KAT_BASE + "usearch/" + serie + "%20s"+season + "e"+episode + "%20category%3Atv/?field=time_add&sorder=asc&rss=1"
     if not season and episode:          # Only episode
         print("For better results, include season. Returning episode of the latest season.")
-        katurl = "http://thekat.tv/usearch/" + serie + "%20e"+episode + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
-        url = "https://proxy-nl.hide.me/go.php?u=" + urllib.parse.quote(katurl, safe='') + "&b=4"
+        url = KAT_BASE + "usearch/" + serie + "%20e"+episode + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
     if not episode and season:          # Only season
         print("For better results, include episode. Returning latest episode of the season.")
-        katurl = "http://thekat.tv/usearch/" + serie + "%20s"+season + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
-        url = "https://proxy-nl.hide.me/go.php?u=" + urllib.parse.quote(katurl, safe='') + "&b=4"
+        url = KAT_BASE + "usearch/" + serie + "%20s"+season + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
     if not season and not episode:      # No episode or season
         print("Providing latest result only. Not really accurate.")
-        url = "https://kat.cr/usearch/" + serie + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
+        url = KAT_BASE + "usearch/" + serie + "%20category%3Atv/?field=time_add&sorder=desc&rss=1"
     
     # Print url for fun.
     print(url)

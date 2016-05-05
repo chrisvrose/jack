@@ -4,11 +4,10 @@
 ## For syntax of calling script.py, check first few commented into lines of script.py
 
 import schedule
-import time
-import os
+import time, datetime, pytz
+import os, json
 import argparse
 import urllib.request, urllib.parse, urllib.error
-import json
 
 from script import mainScript
 
@@ -68,17 +67,20 @@ if args.add:
 
 def job():
     global mainScriptReturn
-    print(time.strftime("[%H:%M:%S]", time.localtime()))
+    
+    now = pytz.utc.localize(datetime.datetime.now()).astimezone(pytz.timezone('Asia/Kolkata'))
+    print("now: ",now.strftime('[%H:%M:%S]'))
+    startTime = now.replace(hour=6, minute=20, second=0, microsecond=0)
+    print("startTime",startTime)
+    endTime = now.replace(hour=7, minute=0, second=0, microsecond=0)
+    print("endTime",endTime)
+    if not(startTime<now<endTime):
+        print("Out of time range. Will continue at",startTime.strftime('[%H:%M:%S]'))
+        return
+    # print("going forward")
+    
     for entry in jsondata:
         print(entry)
-        
-        # command = "python script.py " + entry["serie"] + " -s " + entry["season"] + " -e " + entry["episode"]
-        # if entry["season"] == "":
-        #     command = "python script.py " + entry["serie"] + " -e " + entry["episode"]
-        # if entry["episode"] == "":
-        #     command = "python script.py " + entry["serie"] + " -s " + entry["season"]
-        # # print(command)
-        # os.system(command)
         
         if entry["season"] and entry["episode"]:
             mainScriptReturn = mainScript(entry["serie"], entry["season"], entry["episode"])
@@ -91,8 +93,8 @@ def job():
             print("[manager][mainScript]",  mainScriptReturn)
 
 
-## Calls job() every 15 minutes. Use every(0.1) when testing code. (Runs every 0.1 mins => 10 secs). Change back to 15 later.
-schedule.every(0.1).minutes.do(job)
+## Calls job() every 8 minutes. Use every(0.1) when testing code. (Runs every 0.1 mins => 10 secs). Change back to 8 later.
+schedule.every(8).minutes.do(job)
 
 ## Run for the first time
 job()
@@ -100,11 +102,10 @@ job()
 ## Actually start the loop
 while True:
     checkfile = open("data.js", "r")
-    print("[manager][checkfile] ", checkfile.read(), len(checkfile.read()))
-    # if not len(checkfile.read()):
-    print("[manager][while_loop] mainScriptReturn: ", mainScriptReturn)
-    if mainScriptReturn != 0:
-        print("breaking...")
+    # print("[manager][checkfile] ", checkfile.read(), len(checkfile.read()))
+    # print("[manager][while_loop] mainScriptReturn: ", mainScriptReturn)
+    if mainScriptReturn != 0:                                                   # When to stop looping
+        print("breaking... (With mainScriptReturn = ",mainScriptReturn,")")
         break
     schedule.run_pending()
     time.sleep(1)
