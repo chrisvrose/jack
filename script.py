@@ -77,21 +77,17 @@ def mainScript(serie, season="", episode=""):
     print("Count: ", counter)
     
     if counter > 0:                                                                     # If at least 1 good result
-        totalMessageSent = "";//Stores the entire message
         messageToSend = resultTitles[0]
         totalMessageSent += ("\n"+ messageToSend)
-        command = "python send_message.py \""+messageToSend+"\""        # Set var "python hangupsapi/examples/send_message.py <oldest link>"
-        os.system(command)
+        os.system("python send_message.py \""+messageToSend+"\""        # Set var "python hangupsapi/examples/send_message.py <oldest link>")
         
         messageToSend = "Link: " + resultLinks[0]
         totalMessageSent += ("\n"+ messageToSend)
-        command = "python send_message.py \""+messageToSend+"\""
-        os.system(command)
+        os.system("python send_message.py \""+messageToSend+"\"")
         
         messageToSend = resultMagnets[0]
         totalMessageSent += ("\n"+ messageToSend)
-        command = "python send_message.py \""+messageToSend+"\""
-        os.system(command)
+        os.system("python send_message.py \""+messageToSend+"\"")
         
         print("Sent Hangout Message: ", totalMessageSent)        #Printing out the message that was spit out
         

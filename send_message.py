@@ -1,20 +1,20 @@
 #!python3
 import asyncio
 import hangups
-import sys
+from sys import argv
 
 # ID of the conversation to send the message to.
 # CONVERSATION_ID = 'UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ'
 #Handling the message
-if len(sys.argv)==1: 
+if len(argv)==1: 
     MESSAGE = "Yolo"        #No arguments - Why, don't ask us
 else: 
-    MESSAGE = sys.argv[1]
+    MESSAGE = argv[1]
     
 #Handling the Conversation ID
-if len(sys.argv) == 3:
-    CONVERSATION_ID = sys.argv[2]        #Set input Conversation id
-elif len(sys.argv) == 4 and sys.argv[4].lower() == "dev":
+if len(argv) == 3:
+    CONVERSATION_ID = argv[2]        #Set input Conversation id
+elif len(argv) == 4 and argv[4].lower() == "dev":
     CONVERSATION_ID = 'Ugx56o6iNATAA80XrKp4AaABAQ'        # DevTest group if append with 'dev'
 else:
     CONVERSATION_ID = 'UgyT6DYhh50bUOijMVh4AaABAQ'        #Post to the Tose Group
