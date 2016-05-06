@@ -57,11 +57,12 @@ Example: `python script.py The Flash -s 2 -e 19`
 Actually searches Kickass Torrents, get results and pick one. Run this for _1-time search-and-send_ Then runs send_message.py to send hangouts messages.
 
 ### send_message.py
-**syntax:** `python send_message.py <message>`
+**syntax:** `python send_message.py <message> [conversation id]`
 
 Example: `python send_message.py "Hello There"`
+Example: `python send_message.py "Hello There" "HuGEconVERSATIONID"`
 
-Send message using Hangouts. Used by script.py to send links. Recipient is (currently) hard-coded in script. Edit with any text editor and change the value of `CONVERSATION_ID`
+Send message using Hangouts. Used by script.py to send links. Recipient can be selected, but its rather tedious. Edit with any text editor and change the value of `CONVERSATION_ID`
 
 
 ### Things to know
