@@ -14,7 +14,7 @@ else:
 #Handling the Conversation ID
 if len(sys.argv)>=3:
     CONVERSATION_ID = sys.argv[2]        #Set input Conversation id
-else
+else:
     CONVERSATION_ID = 'UgyT6DYhh50bUOijMVh4AaABAQ'        #Post to the Tose Group
 ## Some conversation IDs for testing.
 # Rithvik Vibhu: UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ
