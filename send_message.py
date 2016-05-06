@@ -6,6 +6,11 @@ from sys import argv
 # ID of the conversation to send the message to.
 # CONVERSATION_ID = 'UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ'
 #Handling the message
+
+
+
+
+
 if len(argv)==1: 
     MESSAGE = "Yolo"        #No arguments - Why, don't ask us
 else: 
@@ -14,15 +19,17 @@ else:
 #Handling the Conversation ID
 if len(argv) == 3:
     CONVERSATION_ID = argv[2]        #Set input Conversation id
-elif len(argv) == 3 and argv[2].lower() == "dev":
-    CONVERSATION_ID = 'Ugx56o6iNATAA80XrKp4AaABAQ'        # DevTest group if append with 'dev'
 else:
     CONVERSATION_ID = 'UgyT6DYhh50bUOijMVh4AaABAQ'        #Post to the Tose Group
 
+CONVERSATION_ID= CONVERSATION_ID.replace("Dev","UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ");
+CONVERSATION_ID= CONVERSATION_ID.replace("ToSE","UgyT6DYhh50bUOijMVh4AaABAQ");
+
+
 ## Some conversation IDs for testing.
 # Rithvik Vibhu: UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ
-# ToSe group:  UgyT6DYhh50bUOijMVh4AaABAQ
-# ToSe DevTest group: Ugx56o6iNATAA80XrKp4AaABAQ
+# ToSE group:  UgyT6DYhh50bUOijMVh4AaABAQ
+# ToSE DevTest group: Ugx56o6iNATAA80XrKp4AaABAQ
 # Test group: Ugw-YMKhMfDDCpS7KiV4AaABAQ
 
 # print(MESSAGE, CONVERSATION_ID)
