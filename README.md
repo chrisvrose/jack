@@ -1,11 +1,10 @@
 # Tose-app
 
-#### NOTE: Before running, read through the first few commented lines in each main file. It provides insight on syntax and purpose.
-#### New NOTE: Forget the previous note. Just read this README. Those comments are likely outdated.
+#### NOTE: Reading the code is about as tedious as catching a whale with a fishing pole. Most of the things needed to run the bot is here. Unless you're wanna know the code. Then, you're probably going to read that in just a few seconds.
 
-Tose-app is a bot that periodically checks for new episodes and publishes a link, and other details.
+Tose-app is a bot that periodically checks KAT for new episodes and publishes a link, and other details.
 
-/TODO: Insert more bullshit text here.
+Unfortunately a server PC is required to do this, so you know, you need to run this like a normal person.
 
 
 ## Files to care about
@@ -40,7 +39,7 @@ Optional files:
 
 ## Usage
 
-/TODO: More bs
+Just run manager.py like a normal person and let it be.
 
 ### manager.py
 **syntax:** `python manager.py --add <serie> -s [X]X -e [Y]Y`
@@ -73,7 +72,7 @@ Send message using Hangouts. Used by script.py to send links. Recipient is (curr
 
 * The non-essential folder is non essential. You may delete it, but why waste energy? Let it be.
 
-* Don't mind the lazy commit descriptions.
+* Don't mind the lazy commit descriptions(If there are any).
 
 
 ### Who do I talk to? ###
@@ -82,7 +81,9 @@ If you happen to find a bug (highly likely with these alpha grade scripts), [cre
 
 If you have a question, do the same thing as above.
 
-Bug a developer:
+If they don't respond, this file gives you the permission to do the following - 
+    1. Send message
+    2. Repeat until enter key is pulpy
 
 * Repo owner, any admin or developer.
 * ~~Other community or team contact~~
