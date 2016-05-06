@@ -61,8 +61,9 @@ Actually searches Kickass Torrents, get results and pick one. Run this for _1-ti
 
 Example: `python send_message.py "Hello There"`
 Example: `python send_message.py "Hello There" "HuGEconVERSATIONID"`
+Example: `python send_message.py "Hello There" "shortconvname"`
 
-Send message using Hangouts. Used by script.py to send links. Recipient can be selected, but its rather tedious. Edit with any text editor and change the value of `CONVERSATION_ID`
+Send message using Hangouts. Used by script.py to send links. Recipient can be selected, but its rather tedious. Edit with any text editor and change the value of `CONVERSATION_ID`. The app also uses two Constants, "ToSE" and "Dev".
 
 
 ### Things to know
