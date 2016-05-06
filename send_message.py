@@ -14,7 +14,7 @@ else:
 #Handling the Conversation ID
 if len(argv) == 3:
     CONVERSATION_ID = argv[2]        #Set input Conversation id
-elif len(argv) == 4 and argv[4].lower() == "dev":
+elif len(argv) == 3 and argv[2].lower() == "dev":
     CONVERSATION_ID = 'Ugx56o6iNATAA80XrKp4AaABAQ'        # DevTest group if append with 'dev'
 else:
     CONVERSATION_ID = 'UgyT6DYhh50bUOijMVh4AaABAQ'        #Post to the Tose Group
