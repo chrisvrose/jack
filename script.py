@@ -77,20 +77,23 @@ def mainScript(serie, season="", episode=""):
     print("Count: ", counter)
     
     if counter > 0:                                                                     # If at least 1 good result
+        totalMessageSent = "";//Stores the entire message
         messageToSend = resultTitles[0]
-        command = "python send_message.py \""+messageToSend+"\""  # Set var "python hangupsapi/examples/send_message.py <oldest link>"
-        print("Sending hangouts message: ", messageToSend)
+        totalMessageSent += ("\n"+ messageToSend)
+        command = "python send_message.py \""+messageToSend+"\""        # Set var "python hangupsapi/examples/send_message.py <oldest link>"
         os.system(command)
         
         messageToSend = "Link: " + resultLinks[0]
+        totalMessageSent += ("\n"+ messageToSend)
         command = "python send_message.py \""+messageToSend+"\""
-        print("Sending hangouts message: ", messageToSend)
         os.system(command)
         
         messageToSend = resultMagnets[0]
+        totalMessageSent += ("\n"+ messageToSend)
         command = "python send_message.py \""+messageToSend+"\""
-        print("Sending hangouts message: ", messageToSend)
         os.system(command)
+        
+        print("Sent Hangout Message: ", totalMessageSent)        #Printing out the message that was spit out
         
         f = open("data.js", "r+")
         jsondata = json.loads(f.read())
