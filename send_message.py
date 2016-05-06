@@ -12,14 +12,20 @@ else:
     MESSAGE = sys.argv[1]
     
 #Handling the Conversation ID
-if len(sys.argv)>=3:
+if len(sys.argv) == 3:
     CONVERSATION_ID = sys.argv[2]        #Set input Conversation id
+elif len(sys.argv) == 4 and sys.argv[4].lower() == "dev":
+    CONVERSATION_ID = 'Ugx56o6iNATAA80XrKp4AaABAQ'        # DevTest group if append with 'dev'
 else:
     CONVERSATION_ID = 'UgyT6DYhh50bUOijMVh4AaABAQ'        #Post to the Tose Group
+
 ## Some conversation IDs for testing.
 # Rithvik Vibhu: UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ
 # ToSe group:  UgyT6DYhh50bUOijMVh4AaABAQ
+# ToSe DevTest group: Ugx56o6iNATAA80XrKp4AaABAQ
 # Test group: Ugw-YMKhMfDDCpS7KiV4AaABAQ
+
+# print(MESSAGE, CONVERSATION_ID)
 
 #Below code removed as this confirmation is not really required as the header is returned
 #print("Sent hangouts message: ", MESSAGE)
