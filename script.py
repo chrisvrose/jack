@@ -18,7 +18,7 @@ def mainScript(serie, season="", episode=""):
     
     #### Making sure that the serie, season and episode are not invalid ####
     if  serie == "":
-        parser.error("Invalid serie")
+        parser.error("Invalid serie (Empty Series Argument) ")
     if len(str(season)) > 2 and season != None and episode != None:
         parser.error("Season number cannot be larger than 2")
     elif season != None:
