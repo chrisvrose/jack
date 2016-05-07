@@ -5,8 +5,7 @@ import sys, os
 import random
 from google.protobuf import descriptor_pb2
 
-REFRESH_TOKEN_PATH = 'refresh_token.txt'
-# CONVERSATION_ID = 'DEFAULT: UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ'
+REFRESH_TOKEN_PATH = 'refresh_token.txt'    #Stores the refresh token after using a auth token once
 
 def main():
     cookies = hangups.auth.get_auth_stdin(REFRESH_TOKEN_PATH)

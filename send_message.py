@@ -12,7 +12,7 @@ from sys import argv
 
 
 if len(argv)==1: 
-    MESSAGE = "Yolo"        #No arguments - Why, don't ask us
+    MESSAGE = "Yolo"        #No arguments - Why, don't ask us, its your job to provide a message argument dude
 else: 
     MESSAGE = argv[1]
     
@@ -33,10 +33,7 @@ CONVERSATION_ID= CONVERSATION_ID.replace("Rithvik","UgzTQ7JmCpWG_Peinjx4AaABAagB
 # ToSE DevTest group: Ugx56o6iNATAA80XrKp4AaABAQ
 # Test group: Ugw-YMKhMfDDCpS7KiV4AaABAQ
 
-# print(MESSAGE, CONVERSATION_ID)
-
-#Below code removed as this confirmation is not really required as the header is returned
-#print("Sent hangouts message: ", MESSAGE)
+print("Sending hangouts message: ", MESSAGE)
 
 # Path where OAuth refresh token is saved, allowing hangups to remember yourcredentials.
 REFRESH_TOKEN_PATH = 'refresh_token.txt'

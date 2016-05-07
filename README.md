@@ -2,7 +2,7 @@
 
 #### NOTE: Reading the code is about as tedious as catching a whale with a fishing pole. Most of the things needed to run the bot is here. Unless you're wanna know the code. Then, you're probably going to read that in just a few seconds.
 
-Tose-app is a bot that periodically checks KAT for new episodes and publishes a link, and other details.
+Tose-app is a bot that periodically checks KAT for new episodes and publishes a link alongside a magnet link.
 
 Unfortunately a server PC is required to do this, so you know, you need to run this like a normal person.
 
@@ -23,18 +23,18 @@ Optional files:
 
 ## How do I get set up?
 
-1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7}
+1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7} or if you're running Ubuntu, `sudo apt-get install python3`
 
 2. Download the code with git:
     * By git:
 `git clone https://bitbucket.org/tose-project/tose-app` (Recommended)
     * By downloading src: [Click here and then 'Download Repository'](https://bitbucket.org/tose-project/tose-app/downloads). Extract it.
 
-3. In terminal (Linux/OS X) or command line (Windows), navigate to the root of the folder using `cd` _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` in Linux._
+3. In terminal (Linux/OS X) or command line (Windows), navigate to the root of the folder using `cd` 
 
-4. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`
+4. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` in Linux._
 
-5. Profit!
+5. Profit?!
 
 
 ## Usage
@@ -74,7 +74,7 @@ Send message using Hangouts. Used by script.py to send links. Recipient can be s
 
 * The non-essential folder is non essential. You may delete it, but why waste energy? Let it be.
 
-* Don't mind the lazy commit descriptions(If there are any).
+* Sorry for the commit names. We ae trying our best to sound more professional :(.
 
 
 ### Who do I talk to? ###
@@ -84,8 +84,10 @@ If you happen to find a bug (highly likely with these alpha grade scripts), [cre
 If you have a question, do the same thing as above.
 
 If they don't respond, this file gives you the permission to do the following - 
-    1. Send message
-    2. Repeat until enter key is pulpy
+
+1. Send message
+
+2. Repeat until enter key is pulpy
 
 * Repo owner, any admin or developer.
 * ~~Other community or team contact~~

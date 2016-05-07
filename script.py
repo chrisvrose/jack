@@ -16,7 +16,7 @@ def mainScript(serie, season="", episode=""):
     
     KAT_BASE = "https://thekat.tv/"
     
-    #### Making sure that the serie, season and episode are not invalid ####
+    #### Making sure that the serie, season and episode are valid ####
     if  serie == "":
         parser.error("Invalid serie (Empty Series Argument) ")
     if len(str(season)) > 2 and season != None and episode != None:
@@ -65,7 +65,7 @@ def mainScript(serie, season="", episode=""):
         title = rssdata["entries"][index]["title"]                                      # Set title
         link = rssdata["entries"][index]["links"][0]["href"]                            # Set link
         magnet = rssdata["entries"][index]["torrent_magneturi"]
-        if size < 500:                                                                  # Continue with entry only if size < 500 MB
+        if size <= 512:                                                                 # Continue with entry only if size < 0.5 GiB
             if 'LOL' in title or 'ettv' in title or 'rartv' in title:                   # Make sure the title is reputable. The keywords help.
                 print(str(round(size)), " - ", title, " (", link, ")")                          # List all good results when script runs
                 resultSizes.append(size)                                                # Store size of entry
@@ -78,18 +78,14 @@ def mainScript(serie, season="", episode=""):
     
     if counter > 0:                                                                     # If at least 1 good result
         messageToSend = resultTitles[0]
-        totalMessageSent += ("\n"+ messageToSend)
         os.system("python send_message.py \""+messageToSend+"\""        # Set var "python hangupsapi/examples/send_message.py <oldest link>")
         
         messageToSend = "Link: " + resultLinks[0]
-        totalMessageSent += ("\n"+ messageToSend)
         os.system("python send_message.py \""+messageToSend+"\"")
         
         messageToSend = resultMagnets[0]
-        totalMessageSent += ("\n"+ messageToSend)
         os.system("python send_message.py \""+messageToSend+"\"")
         
-        print("Sent Hangout Message: ", totalMessageSent)        #Printing out the message that was spit out
         
         f = open("data.js", "r+")
         jsondata = json.loads(f.read())

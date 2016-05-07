@@ -25,11 +25,11 @@ episode = ""
 mainScriptReturn = 0
 
 if len(str(args.s)) > 2 and args.s != None:
-    parser.error("Season number cannot be larger than 2")
+    parser.error("Season number cannot be >2")
 elif args.s != None:
     season = '%02d' % args.s
 if len(str(args.e)) > 2 and args.e != None:
-    parser.error("Episode number cannot be larger than 2")
+    parser.error("Episode number cannot be >2")
 elif args.e != None:
     episode = '%02d' % args.e
 
