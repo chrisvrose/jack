@@ -37,12 +37,12 @@ def processMsg(msg, cid):
             randomMessages = ["But I am Spartacus!","No! I am Spartacus!", "How dareth thee! I am Spartacus"]
             os.system("python3 send_message.py \""+random.choice(randomMessages)+"\" "+cid)
         elif "yolo" in msg.lower():
-            randomMessages = ["Yolo - Always remember to wear your seat belt!","Yolo - Never jump off a cliff riding a pig!","Yolo - You never live twice!"]
+            randomMessages = ["Yolo - Always remember to wear your seat belt!","Yolo - Never jump off a cliff riding a pig!","Yolo - You never live twice!","Yolo - Gringott. Try saying that. Gring-gott. Teehee"]
             os.system("python3 send_message.py \""+random.choice(randomMessages)+"\" "+cid)
         elif "gimme the cid" in msg.lower():
             os.system("python3 send_message.py \""+cid+"\" "+cid)
         else:
-            randomMessages = ["Get mad!",""Don\'t make lemonade","Goodbye.","Her name is Caroline","The answer is beneath us","Hello...","Prometheus was punished by the gods for giving the gift of knowledge to man. He thrown into the bowels of the Earth and pecked by birds."]
+            randomMessages = ["Get mad!","Don\'t make lemonade","Goodbye.","Her name is Caroline","The answer is beneath us","Hello...","Prometheus was punished by the gods for giving the gift of knowledge to man. He was cast into the bowels of the Earth and pecked by birds."]
             os.system("python3 send_message.py \""+random.choice(randomMessages)+"\" "+cid)
 
 
