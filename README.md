@@ -2,6 +2,8 @@
 
 #### NOTE: Reading the code is about as tedious as catching a whale with a fishing pole. Most of the things needed to run the bot is here. Unless you're wanna know the code. Then, you're probably going to read that in just a few seconds.
 
+
+
 Tose-app is a bot that periodically checks KAT for new episodes and publishes a link alongside a magnet link.
 
 Unfortunately a server PC is required to do this, so you know, you need to run this like a normal person.
@@ -24,7 +26,7 @@ Optional files:
 ## How do I get set up?
 
 1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7} or if you're running Ubuntu, `sudo apt-get install python3`.
-    * Ubuntu has issues with python editions and versions. By default `python` refers to Python 2.7. So, enter `alias python='/usr/bin/python3'` before running this server if you encounter things that look like syntax errors. This should fix them.
+    * Ubuntu has issues with python editions and versions. By default `python` refers to Python 2.7. Use the files suffixed with py3 which should fix most issues, and run them through `python3` instead of `python`.
 
 2. Download the code with git:
     * By git:
