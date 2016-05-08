@@ -23,7 +23,8 @@ Optional files:
 
 ## How do I get set up?
 
-1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7} or if you're running Ubuntu, `sudo apt-get install python3`
+1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7} or if you're running Ubuntu, `sudo apt-get install python3`.
+    * Ubuntu has issues with python editions and versions. By default `python` refers to Python 2.7. So, enter `alias python='/usr/bin/python3'` before running this server if you encounter things that look like syntax errors. This should fix them.
 
 2. Download the code with git:
     * By git:
