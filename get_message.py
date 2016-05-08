@@ -42,7 +42,7 @@ def processMsg(msg, cid):
         elif "gimme the cid" in msg.lower():
             os.system("python send_message.py \""+cid+"\" "+cid)
         else:
-            randomMessages = ["Get mad!","Goodbye.","Her name is Caroline","The answer is beneath us","Hello...","Prometheus was punished by the gods for giving the gift of knowledge to man. He thrown into the bowels of the Earth and pecked by birds."]]
+            randomMessages = ["Get mad!",""Don\'t make lemonade","Goodbye.","Her name is Caroline","The answer is beneath us","Hello...","Prometheus was punished by the gods for giving the gift of knowledge to man. He thrown into the bowels of the Earth and pecked by birds."]
             os.system("python send_message.py \""+random.choice(randomMessages)+"\" "+cid)
 
 
