@@ -33,7 +33,7 @@ def processMsg(msg, cid):
         if "lol me" in msg.lower():
             randomMessages = ["I don\'t hold grudges, my father did and I always hated him for it", " Say what you want about deaf people..."," My wife and I were happy for twenty years; then we met.", "My grandfather has the heart of a lion and a lifetime ban from the local zoo.","When you throw a boomerang and it doesnt return, you lost a stick","I refused to believe my roadworker father was stealing from his job, but when I got home, all the signs were there.","I haven\'t slept for three days, because that would be too long","There\'s a fine line between Numerator and Denominator."]
             os.system("python3 send_message.py \""+ random.choice(randomMessages) +"\" "+cid)
-        elif "what do you think about dc comics" in msg.lower():
+        elif "what do you think about dc comics" in msg.lower() or "what do you think of dc comics" in msg.lower():
             randomMessages = ["Greg! Move your Head!","Its quite a Marvel.","It sure is quite a marvel."]
             os.system("python3 send_message.py \""+ random.choice(randomMessages) +"\" "+cid)
         elif "i am spartacus" in msg.lower():
