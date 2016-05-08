@@ -21,8 +21,8 @@ def on_state_update(state_update):
         # print(state_update.conversation)
         CONVERSATION_ID = state_update.conversation.conversation_id.id
         msg = state_update.event_notification.event.chat_message.message_content.segment[0].text
-        print("ConversationId: ",CONVERSATION_ID)
-        print("msg: ",msg)
+        #print("ConversationId: ",CONVERSATION_ID)
+        print("Message captured: ",msg)
         processMsg(msg, CONVERSATION_ID)
 
 
