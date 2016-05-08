@@ -26,8 +26,7 @@ Optional files:
 ## How do I get set up?
 
 1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7} or if you're running Ubuntu, `sudo apt-get install python3`.
-    * Ubuntu has issues with python editions and versions. By default `python` refers to Python 2.7. Use the files suffixed with py3 which should fix most issues, and run them through `python3` instead of `python`.
-
+    * Ubuntu has issues with python editions and versions. Refer to the Linux Version Issue Section
 2. Download the code with git:
     * By git:
 `git clone https://bitbucket.org/tose-project/tose-app` (Recommended)
@@ -68,6 +67,11 @@ Example: `python send_message.py "Hello There" "shortconvname"`
 
 Send message using Hangouts. Used by script.py to send links. Recipient can be selected, but its rather tedious. Edit with any text editor and change the value of `CONVERSATION_ID`. The app also uses two Constants, "ToSE" and "Dev".
 
+### fix-py3.sh
+**syntax:** `./fix-py3.sh`
+
+Refer to the "Debian-based Linux Version Issues" section please.
+
 
 ### Things to know
 
@@ -78,6 +82,16 @@ Send message using Hangouts. Used by script.py to send links. Recipient can be s
 * The non-essential folder is non essential. You may delete it, but why waste energy? Let it be.
 
 * Sorry for the commit names. We ae trying our best to sound more professional :(.
+
+* The `conv_commit` file can be deleted without harm
+
+### Debian-based Linux Version Issues
+
+Yeah, it is something in Debian-based distributions (probably others too) that python has `real big` issues. In there, `python` stands for Python v2.7, which basically trashes our project.
+
+Ubuntu, especially is no exception (Ubuntu being the platform it is also tested on). You will notice this as "syntax" issues, especially in the `send_message.py`.
+
+The `fix-py3.sh` script creates 2 files which you can use. Run it to create and/or update those files.
 
 
 ### Who do I talk to? ###
