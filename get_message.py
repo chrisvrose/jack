@@ -38,7 +38,7 @@ def processMsg(msg, cid):
         elif "yolo" in msg.lower():
             os.system("python send_message.py \"Yolo - Always remember to wear your seat belt!\" "+cid)
         elif "gimme the cid" in msg.lower():
-            os.system("python send_message.py \"+cid+"\" "+cid)
+            os.system("python send_message.py \""+cid+"\" "+cid)
         else:
             os.system("python send_message.py \"Yolo\" "+cid)
 
