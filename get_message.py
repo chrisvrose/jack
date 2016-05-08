@@ -45,7 +45,7 @@ def processMsg(msg, cid):
         elif "gimme the cid" in msg.lower():
             os.system("python send_message.py \""+cid+"\" "+cid)
         elif "how was batman vs superman" in msg.lower():
-            randomMessages = ["The red capes are coming! The red capes are coming!","Devils don\'t come from beneath us, they come from the skies.","Do you bleed? You probably will but I\'m a bot so I can\'t really harm you"]]
+            randomMessages = ["The red capes are coming! The red capes are coming!","Devils don\'t come from beneath us, they come from the skies.","Do you bleed? You probably will but I\'m a bot so I can\'t really harm you"]
             os.system("python send_message.py \""+random.choice(randomMessages)+"\" "+cid)
         else:
             randomMessages = ["Get mad!","Don\'t make lemonade","Goodbye.","Her name is Caroline","The answer is beneath us","Hello...","Prometheus was punished by the gods for giving the gift of knowledge to man. He was cast into the bowels of the Earth and pecked by birds.","sqrt(-1) love you!"]
