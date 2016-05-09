@@ -6,6 +6,10 @@ import random
 from google.protobuf import descriptor_pb2
 from cleverbot import Cleverbot
 
+
+cb = Cleverbot()
+
+
 REFRESH_TOKEN_PATH = 'refresh_token.txt'    #Stores the refresh token after using a auth token once
 
 def main():
@@ -39,8 +43,8 @@ def processMsg(msg, cid):
     else:
         name.seek(0)  #make sure you are still at the start of the file
         namer = name.read().rstrip()  #Read file and strip trailing spaces and newlines also
-    print(namer.lower())
     name.close()
+
     if msg.lower().startswith(namer.lower()):
         if "lol me" in msg.lower() or "lolme" in msg.lower() or "tell me a joke" in msg.lower():
             randomMessages = ["I don\'t hold grudges, my father did and I always hated him for it", " Say what you want about deaf people..."," My wife and I were happy for twenty years; then we met.", "My grandfather has the heart of a lion and a lifetime ban from the local zoo.","When you throw a boomerang and it doesnt return, you lost a stick","I refused to believe my roadworker father was stealing from his job, but when I got home, all the signs were there.","I haven\'t slept for three days, because that would be too long","There\'s a fine line between Numerator and Denominator.","No. You lol me. :P"]
