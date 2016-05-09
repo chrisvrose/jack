@@ -37,7 +37,8 @@ def processMsg(msg, cid):
     else:
         namer = name.read()
     print(namer)
-    if msg.lower().startswith("tose"):
+    name.close()
+    if msg.lower().startswith(namer.lower()):
         if "lol me" in msg.lower():
             randomMessages = ["I don\'t hold grudges, my father did and I always hated him for it", " Say what you want about deaf people..."," My wife and I were happy for twenty years; then we met.", "My grandfather has the heart of a lion and a lifetime ban from the local zoo.","When you throw a boomerang and it doesnt return, you lost a stick","I refused to believe my roadworker father was stealing from his job, but when I got home, all the signs were there.","I haven\'t slept for three days, because that would be too long","There\'s a fine line between Numerator and Denominator."]
             os.system("python send_message.py \""+ random.choice(randomMessages) +"\" "+cid)
@@ -58,7 +59,6 @@ def processMsg(msg, cid):
         else:
             randomMessages = ["Get mad!","Don\'t make lemonade","Goodbye.","Her name is Caroline","The answer is beneath us","Hello...","Prometheus was punished by the gods for giving the gift of knowledge to man. He was cast into the bowels of the Earth and pecked by birds.","sqrt(-1) love you!"]
             os.system("python send_message.py \""+random.choice(randomMessages)+"\" "+cid)
-
 
 if __name__ == '__main__':
     main()
