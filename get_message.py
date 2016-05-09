@@ -28,7 +28,7 @@ def on_state_update(state_update):
 
 
 def processMsg(msg, cid):
-    name = open('name.txt',r+)
+    name = open('name.txt','r+')
     namer = ""
     name.seek(0) #ensure you're at the start of the file..
     first_char = name.read(1) #get the first character
