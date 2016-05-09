@@ -3,63 +3,43 @@ import asyncio
 import hangups
 from sys import argv
 
-# ID of the conversation to send the message to.
-# CONVERSATION_ID = 'UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ'
-#Handling the message
-
-
-
-
-
-if len(argv)==1: 
-    MESSAGE = "Yolo"        #No arguments - Why, don't ask us, its your job to provide a message argument dude
-else: 
-    MESSAGE = argv[1]
-    
-#Handling the Conversation ID
-if len(argv) == 3:
-    CONVERSATION_ID = argv[2]        #Set input Conversation id
-else:
-    CONVERSATION_ID = 'UgyT6DYhh50bUOijMVh4AaABAQ'        #Post to the Tose Group
-
-CONVERSATION_ID= CONVERSATION_ID.replace("Dev","Ugx56o6iNATAA80XrKp4AaABAQ");
-CONVERSATION_ID= CONVERSATION_ID.replace("ToSE","UgyT6DYhh50bUOijMVh4AaABAQ");
-CONVERSATION_ID= CONVERSATION_ID.replace("Rithvik","UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ");
-
-
 ## Some conversation IDs for testing.
 # Rithvik Vibhu: UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ
 # ToSE group:  UgyT6DYhh50bUOijMVh4AaABAQ
 # ToSE DevTest group: Ugx56o6iNATAA80XrKp4AaABAQ
 # Test group: Ugw-YMKhMfDDCpS7KiV4AaABAQ
 
-print("Sending hangouts message: ", MESSAGE)
-
 # Path where OAuth refresh token is saved, allowing hangups to remember yourcredentials.
 REFRESH_TOKEN_PATH = 'refresh_token.txt'
 
-## Default stuff ahead.
-
-def main():
+def sendHangoutsMessage(msg, cid=None):
+    
+    if cid == None:
+        cid = 'UgyT6DYhh50bUOijMVh4AaABAQ'
+    cid = cid.replace("Dev","Ugx56o6iNATAA80XrKp4AaABAQ");
+    cid = cid.replace("ToSE","UgyT6DYhh50bUOijMVh4AaABAQ");
+    cid = cid.replace("Rithvik","UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ");
+    
+    print("Sending hangouts message: ", msg, "\nTo: ",cid)
+    
     cookies = hangups.auth.get_auth_stdin(REFRESH_TOKEN_PATH)
     client = hangups.Client(cookies)
-    client.on_connect.add_observer(lambda: asyncio.async(send_message(client)))
+    client.on_connect.add_observer(lambda: asyncio.async(send_message(client,msg,cid)))
     loop = asyncio.get_event_loop()
     loop.run_until_complete(client.connect())
 
 @asyncio.coroutine
-def send_message(client):
-
+def send_message(client,msg,cid):
     request = hangups.hangouts_pb2.SendChatMessageRequest(
         request_header=client.get_request_header(),
         event_request_header=hangups.hangouts_pb2.EventRequestHeader(
             conversation_id=hangups.hangouts_pb2.ConversationId(
-                id=CONVERSATION_ID
+                id=cid
             ),
             client_generated_id=client.get_client_generated_id(),
         ),
         message_content=hangups.hangouts_pb2.MessageContent(
-            segment=[hangups.ChatMessageSegment(MESSAGE).serialize()],
+            segment=[hangups.ChatMessageSegment(msg).serialize()],
         ),
     )
 
@@ -72,4 +52,13 @@ def send_message(client):
 
 
 if __name__ == '__main__':
-    main()
+
+    if len(argv)==1: MESSAGE = "Yolo"        #No arguments - Why, don't ask us, its your job to provide a message argument dude
+    else: MESSAGE = argv[1]
+    
+    if len(argv) == 3: CONVERSATION_ID = argv[2]
+    else: CONVERSATION_ID = None
+    
+    sendHangoutsMessage(MESSAGE, CONVERSATION_ID)
+else:
+    print("[send] ",__name__, " module loaded")

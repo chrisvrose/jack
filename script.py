@@ -11,6 +11,8 @@ import urllib.parse
 import argparse
 import os, json
 
+from send_message import sendHangoutsMessage
+
 
 def mainScript(serie, season="", episode=""):
     
@@ -77,14 +79,9 @@ def mainScript(serie, season="", episode=""):
     print("Count: ", counter)
     
     if counter > 0:                                                                     # If at least 1 good result
-        messageToSend = resultTitles[0]
-        os.system("python send_message.py \""+messageToSend+"\""        # Set var "python hangupsapi/examples/send_message.py <oldest link>")
-        
-        messageToSend = "Link: " + resultLinks[0]
-        os.system("python send_message.py \""+messageToSend+"\"")
-        
-        messageToSend = resultMagnets[0]
-        os.system("python send_message.py \""+messageToSend+"\"")
+        sendHangoutsMessage(resultTitles[0], "Dev")
+        sendHangoutsMessage(resultLinks[0], "Dev")
+        sendHangoutsMessage(resultMagnets[0], "Dev")
         
         
         f = open("data.js", "r+")
