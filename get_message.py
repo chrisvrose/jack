@@ -4,6 +4,7 @@ import hangups
 import sys, os
 import random
 from google.protobuf import descriptor_pb2
+from cleverbot import Cleverbot
 
 REFRESH_TOKEN_PATH = 'refresh_token.txt'    #Stores the refresh token after using a auth token once
 
