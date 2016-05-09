@@ -28,7 +28,15 @@ def on_state_update(state_update):
 
 
 def processMsg(msg, cid):
-    
+    name = open('name.txt',r+)
+    namer = ""
+    name.seek(0) #ensure you're at the start of the file..
+    first_char = name.read(1) #get the first character
+    if not first_char:
+        name.write("Tose")
+    else:
+        namer = name.read()
+    print(namer)
     if msg.lower().startswith("tose"):
         if "lol me" in msg.lower():
             randomMessages = ["I don\'t hold grudges, my father did and I always hated him for it", " Say what you want about deaf people..."," My wife and I were happy for twenty years; then we met.", "My grandfather has the heart of a lion and a lifetime ban from the local zoo.","When you throw a boomerang and it doesnt return, you lost a stick","I refused to believe my roadworker father was stealing from his job, but when I got home, all the signs were there.","I haven\'t slept for three days, because that would be too long","There\'s a fine line between Numerator and Denominator."]
