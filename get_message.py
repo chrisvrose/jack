@@ -36,7 +36,7 @@ def processMsg(msg, cid):
         name.write("Tose")
     else:
         namer = name.read()
-    print(namer)
+    print(namer.lower())
     name.close()
     if msg.lower().startswith(namer.lower()):
         if "lol me" in msg.lower():
