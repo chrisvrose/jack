@@ -35,10 +35,11 @@ def processMsg(msg, cid):
     if not first_char:
         name.write("Tose")
     else:
-        namer = name.read()
+        name.seek(0)  #make sure you are still at the start of the file
+        namer = name.read().lower()
     print(namer.lower())
     name.close()
-    if msg.lower().startswith(namer.lower()):
+    if msg.lower().startswith(namer):
         if "lol me" in msg.lower():
             randomMessages = ["I don\'t hold grudges, my father did and I always hated him for it", " Say what you want about deaf people..."," My wife and I were happy for twenty years; then we met.", "My grandfather has the heart of a lion and a lifetime ban from the local zoo.","When you throw a boomerang and it doesnt return, you lost a stick","I refused to believe my roadworker father was stealing from his job, but when I got home, all the signs were there.","I haven\'t slept for three days, because that would be too long","There\'s a fine line between Numerator and Denominator."]
             os.system("python send_message.py \""+ random.choice(randomMessages) +"\" "+cid)
