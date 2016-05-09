@@ -42,8 +42,8 @@ def processMsg(msg, cid):
     print(namer.lower())
     name.close()
     cb = Cleverbot()
-    if msg.lower().startswith(namer.lower()):
-        question = msg.lower()[len(namer.lower()):len(msg)]
+    if namer.lower() in msg.lower():
+        question = msg.lower()
         print(question)
         os.system("python send_message.py \""+ cb.ask(question) +"\" "+cid)
 #        if "lol me" in msg.lower() or "lolme" in msg.lower() or "tell me a joke" in msg.lower():
