@@ -25,31 +25,15 @@ def on_state_update(state_update):
     if state_update.HasField('conversation'):
         # print(state_update.conversation)
         CONVERSATION_ID = state_update.conversation.conversation_id.id
-        print(state_update.event_notification.event.chat_message.message_content.segment);
         msg = state_update.event_notification.event.chat_message.message_content.segment[0].text
         #print("ConversationId: ",CONVERSATION_ID)
         print("Message captured: ",msg)
         processMsg(msg, CONVERSATION_ID)
 
-
-
 def processMsg(msg, cid):
-    name = open('name.txt','a+')
-    namer = ""
-    name.seek(0) #ensure you're at the start of the file..
-    first_char = name.read(1) #get the first character
-    if not first_char:
-        name.write("Tose")
-    else:
-        name.seek(0)  #make sure you are still at the start of the file
-        namer = name.read().rstrip()  #Read file and strip trailing spaces and newlines also
-    name.close()
- 
-    if namer.lower() in msg.lower():
-        os.system("python send_message.py \""+ cb.ask(msg) +"\" "+cid)
+    if "@bot" in msg.lower():
+        os.system("python send_message.py \""+ cb.ask(msg.replace("@bot","")) +"\" "+cid)
 
 
 if __name__ == '__main__':
     main()
-
-
