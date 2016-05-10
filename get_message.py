@@ -6,6 +6,7 @@ import random
 from google.protobuf import descriptor_pb2
 from cleverbot import Cleverbot
 
+from send_message import sendHangoutsMessage
 
 cb = Cleverbot()
 
@@ -31,7 +32,9 @@ def on_state_update(state_update):
             processMsg(msg, CONVERSATION_ID)
 
 def processMsg(msg, cid):
-    os.system("python send_message.py \""+ cb.ask(msg.replace("@bot","")) +"\" "+cid)
+    if "@bot" in msg.lower():
+        # os.system("python send_message.py \""+ cb.ask(msg.replace("@bot","")) +"\" "+cid)
+        sendHangoutsMessage( cb.ask(msg.replace("@bot","")) , cid)
 
 
 if __name__ == '__main__':
