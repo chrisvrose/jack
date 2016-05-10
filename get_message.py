@@ -22,19 +22,24 @@ def main():
 
 @asyncio.coroutine
 def on_state_update(state_update):
-    
     if state_update.HasField('conversation'):
         # print(state_update.conversation)
         CONVERSATION_ID = state_update.conversation.conversation_id.id
         msg = state_update.event_notification.event.chat_message.message_content.segment[0].text
         print("Message captured: ",msg)
         if(state_update.event_notification.event.self_event_state.user_id.chat_id != state_update.event_notification.event.sender_id.chat_id):
-            processMsg(msg, CONVERSATION_ID)
+            if msg.lower().startswith("@bot stfu"):
+                os.system("python send_message.py \"Shutting Down\" "+CONVERSATION_ID)
+                sys.exit(0)
+            else:
+                processMsg(msg, CONVERSATION_ID)
 
 def processMsg(msg, cid):
-    if "@bot" in msg.lower():
-        # os.system("python send_message.py \""+ cb.ask(msg.replace("@bot","")) +"\" "+cid)
-        sendHangoutsMessage( cb.ask(msg.replace("@bot","")) , cid)
+    mesg = cb.ask(msg.replace("@bot",""))
+    print(mesg)
+    print("Would Go to "+cid)
+    os.system("python send_message.py \""+mesg+"\" "+cid)
+#    sendHangoutsMessage(mesg , "Dev") ### DOESNT WORK YET BOOO
 
 
 if __name__ == '__main__':

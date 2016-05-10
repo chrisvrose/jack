@@ -16,9 +16,9 @@ def sendHangoutsMessage(msg, cid=None):
     
     if cid == None:
         cid = 'UgyT6DYhh50bUOijMVh4AaABAQ'
-    cid = cid.replace("Dev","Ugx56o6iNATAA80XrKp4AaABAQ");
-    cid = cid.replace("ToSE","UgyT6DYhh50bUOijMVh4AaABAQ");
-    cid = cid.replace("Rithvik","UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ");
+    cid = cid.replace("Dev","Ugx56o6iNATAA80XrKp4AaABAQ")
+    cid = cid.replace("ToSE","UgyT6DYhh50bUOijMVh4AaABAQ")
+    cid = cid.replace("Rithvik","UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ")
     
     print("Sending hangouts message: ", msg, "\nTo: ",cid)
     
