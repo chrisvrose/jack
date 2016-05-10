@@ -35,10 +35,7 @@ def on_state_update(state_update):
                 processMsg(msg, CONVERSATION_ID)
 
 def processMsg(msg, cid):
-    mesg = cb.ask(msg.replace("@bot",""))
-    print(mesg)
-    print("Would Go to "+cid)
-    os.system("python send_message.py \""+mesg+"\" "+cid)
+    os.system("python send_message.py \""+cb.ask(msg.replace("@bot",""))+"\" "+cid)
 #    sendHangoutsMessage(mesg , "Dev") ### DOESNT WORK YET BOOO
 
 
