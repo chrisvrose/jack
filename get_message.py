@@ -23,23 +23,25 @@ def main():
 
 @asyncio.coroutine
 def on_state_update(state_update):
-    
     if state_update.HasField('conversation'):
         # print(state_update.conversation)
         CONVERSATION_ID = state_update.conversation.conversation_id.id
         msg = state_update.event_notification.event.chat_message.message_content.segment[0].text
-        #print("ConversationId: ",CONVERSATION_ID)
         print("Message captured: ",msg)
-        processMsg(msg, CONVERSATION_ID)
+        if(state_update.event_notification.event.self_event_state.user_id.chat_id != state_update.event_notification.event.sender_id.chat_id):
+            if msg.lower().startswith("@bot stfu"):
+                os.system("python send_message.py \"Shutting Down\" "+CONVERSATION_ID)
+                sys.exit(0)
+            else:
+                processMsg(msg, CONVERSATION_ID)
 
 def processMsg(msg, cid):
-    if "@bot" in msg.lower():
-        # os.system("python send_message.py \""+ cb.ask(msg.replace("@bot","")) +"\" "+cid)
-        reply = cb.ask(msg.replace("@bot",""))
-        print("[get][processMsg]", reply)
-        asyncio.async(send_message(client,reply,cid))
-        # sendHangoutsMessage(reply, cid)
 
+    # os.system("python send_message.py \""+cb.ask(msg.replace("@bot",""))+"\" "+cid)
+    # sendHangoutsMessage(cb.ask(msg) , cid) ### DOESNT WORK YET BOOO
+    reply = cb.ask(msg)
+    print("[get][processMsg]", reply)
+    asyncio.async(send_message(client,reply,cid))
 
 
 def send_message(client,msg,cid):
