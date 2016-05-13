@@ -1,4 +1,4 @@
-# Tose-app
+# ToSE App
 
 #### NOTE: Reading the code is about as tedious as catching a whale with a fishing pole. Most of the things needed to run the bot is here. Unless you're wanna know the code. Then, you're probably going to read that in just a few seconds.
 
@@ -11,11 +11,11 @@ Unfortunately a server PC is required to do this, so you know, you need to run t
 
 ## Files to care about
 
-/TODO: Rename files meaningfully
 
 * manager.py
 * script.py
 * send_message.py
+* get_message.py
 
 Optional files:
 
@@ -26,17 +26,19 @@ Optional files:
 ## How do I get set up?
 
 1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7} or if you're running Ubuntu, `sudo apt-get install python3`.
-    * Ubuntu has issues with python editions and versions. Refer to the Linux Version Issue Section
-2. Download the code with git:
+
+2. Only if you are using Windows, grab git for Windows. Or, you can get SourceTree, and use the git terminal from there.
+
+3. Download the code with git:
     * By git:
 `git clone https://bitbucket.org/tose-project/tose-app` (Recommended)
     * By downloading src: [Click here and then 'Download Repository'](https://bitbucket.org/tose-project/tose-app/downloads). Extract it.
 
-3. In terminal (Linux/OS X) or command line (Windows), navigate to the root of the folder using `cd` 
+4. In terminal (Linux/OS X) or command line (Windows), navigate to the root of the folder using `cd` 
 
-4. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` in Linux._
+5. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` in Linux._
 
-5. Profit?!
+6. Profit?!
 
 
 ## Usage
@@ -65,25 +67,24 @@ Example: `python send_message.py "Hello There"`
 Example: `python send_message.py "Hello There" "HuGEconVERSATIONID"`
 Example: `python send_message.py "Hello There" "shortconvname"`
 
-Send message using Hangouts. Used by script.py to send links. Recipient can be selected, but its rather tedious. Edit with any text editor and change the value of `CONVERSATION_ID`. The app also uses two Constants, "ToSE" and "Dev".
+Send message using Hangouts. Used by script.py to send links. Recipient can be selected, but its rather tedious. Edit with any text editor and change the value of `CONVERSATION_ID`.
+Only for our convenience, we have added (Yea Yea Yea we know) a few constants so that we no longer need the huge cids for testing.
 
-### fix-py3.sh
-**syntax:** `./fix-py3.sh`
+### get_message.py
+**syntax:** `python get_message.py`
 
-Refer to the "Debian-based Linux Version Issues" section please.
-
+Its kinda fun to run this script as Cleverbot will repond. Use at your own discretion because if you use this, you will lose all your popularity (If you have any) in hangouts.
 
 ### Things to know
 
 * The queue of pending episodes are stored in `data.js` in json format, which is automatically generated if it doesn't exist. Feel free to edit it, just maintain the structure.
 
-* refresh_token.txt contains the OAuth 2.0 token that lets the bot sign in as 'Tose App' user into Google. _Do. Not. Delete. Ever._
+* refresh_token.txt contains the OAuth 2.0 token that lets the bot sign in as your given (or provided) user. Delete it, but you'll have to login again.
 
 * The non-essential folder is non essential. You may delete it, but why waste energy? Let it be.
 
 * Sorry for the commit names. We ae trying our best to sound more professional :(.
 
-* The `conv_commit` file can be deleted without harm
 
 ### Debian-based Linux Version Issues
 
@@ -91,7 +92,7 @@ Yeah, it is something in Debian-based distributions (probably others too) that p
 
 Ubuntu, especially is no exception (Ubuntu being the platform it is also tested on). You will notice this as "syntax" issues, especially in the `send_message.py`.
 
-The `fix-py3.sh` script creates 2 files which you can use. Run it to create and/or update those files.
+In older versions, we used a script, but after a few fixes, you no longer will need (or be able to find) it. Run all commands with `python3` (Instead of `python`)
 
 
 ### Who do I talk to? ###
