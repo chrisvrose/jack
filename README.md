@@ -5,22 +5,15 @@
 
 
 Tose-app is a bot that periodically checks KAT for new episodes and publishes a link alongside a magnet link.
+It also has the feature of giving snide replies in conversations.
 
-Unfortunately a server PC is required to do this, so you know, you need to run this like a normal person.
+
+A server PC is required to run these scripts, so yes, be sure to have one lying around.
 
 
 ## Files to care about
 
-
-* manager.py
-* script.py
-* send_message.py
-* get_message.py
-
-Optional files:
-
-* dump.py
-* argsparse.py
+ALL, except wherever mentioned. Because otherwise it wouldn't be in this project.
 
 
 ## How do I get set up?
@@ -43,7 +36,7 @@ Optional files:
 
 ## Usage
 
-Just run manager.py like a normal person and let it be.
+The various scripts have been documented here
 
 ### manager.py
 **syntax:** `python manager.py --add <serie> -s [X]X -e [Y]Y`
