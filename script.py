@@ -20,13 +20,13 @@ def mainScript(serie, season="", episode=""):
     
     #### Making sure that the serie, season and episode are valid ####
     if  serie == "":
-        parser.error("Invalid serie (Empty Series Argument) ")
+        parser.error("Invalid (Empty Series Argument) ")
     if len(str(season)) > 2 and season != None and episode != None:
-        parser.error("Season number cannot be larger than 2")
+        parser.error("Season number cannot be larger than 2 digits")
     elif season != None:
         season = '%02d' % int(season)
     if len(str(episode)) > 2 and episode != None:
-        parser.error("Episode number cannot be larger than 2")
+        parser.error("Episode number cannot be larger than 2 digits")
     elif episode != None:
         episode = '%02d' % int(episode)
     

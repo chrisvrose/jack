@@ -6,8 +6,6 @@ import random
 from google.protobuf import descriptor_pb2
 from cleverbot import Cleverbot
 
-# from send_message import sendHangoutsMessage
-
 cb = Cleverbot()
 
 
@@ -29,16 +27,16 @@ def on_state_update(state_update):
         msg = state_update.event_notification.event.chat_message.message_content.segment[0].text
         print("Message captured: ",msg)
         if(state_update.event_notification.event.self_event_state.user_id.chat_id != state_update.event_notification.event.sender_id.chat_id):
-            if msg.lower().startswith("@bot stfu"):
-                send_message("Shutting Down",CONVERSATION_ID)
-                sys.exit(0)
+            if msg.lower().startswith("@bot"):
+                if "stfu" in msg.lower():
+                    send_message("Shutting Down",CONVERSATION_ID)
+                    sys.exit(0)
+                if "cid" in msg.lower():
+                    send_message(CONVERSATION_ID,CONVERSATION_ID)
             else:
                 processMsg(msg, CONVERSATION_ID)
 
 def processMsg(msg, cid):
-
-    # os.system("python send_message.py \""+cb.ask(msg.replace("@bot",""))+"\" "+cid)
-    # sendHangoutsMessage(cb.ask(msg) , cid) ### DOESNT WORK YET BOOO
     reply = cb.ask(msg)
     print("[get][processMsg]", reply)
     asyncio.async(send_message(client,reply,cid))
