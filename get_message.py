@@ -28,6 +28,8 @@ def on_state_update(state_update):
         print("Message captured: ",msg)
         if(state_update.event_notification.event.self_event_state.user_id.chat_id != state_update.event_notification.event.sender_id.chat_id):
             if msg.lower().startswith("@bot"):
+                if "identify" in msg.lower():
+                    send_message("Its me, Jack!",CONVERSATION_ID)
                 if "stfu" in msg.lower():
                     send_message("Shutting Down",CONVERSATION_ID)
                     sys.exit(0)

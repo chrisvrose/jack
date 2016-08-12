@@ -18,7 +18,7 @@ ALL, except wherever mentioned. Because otherwise it wouldn't be in this project
 
 ## How do I get set up?
 
-1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7} or if you're running Ubuntu, `sudo apt-get install python3`.
+1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7} or if you're running Ubuntu, `sudo apt-get install python3 python3-pip`.
 
 2. Only if you are using Windows, grab git for Windows. Or, you can get SourceTree, and use the git terminal from there.
 
@@ -42,7 +42,9 @@ The various scripts have been documented here
 **syntax:** `python send_message.py <message> [conversation id]`
 
 Example: `python send_message.py "Hello There"`
+
 Example: `python send_message.py "Hello There" "HuGEconVERSATIONID"`
+
 Example: `python send_message.py "Hello There" "shortconvname"`
 
 Send message using Hangouts. Used by script.py to send links. Recipient can be selected, but its rather tedious. Edit with any text editor and change the value of `CONVERSATION_ID`.
