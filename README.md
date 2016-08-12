@@ -1,11 +1,11 @@
-# ToSE App
+# Jack
 
 #### NOTE: Reading the code is about as tedious as catching a whale with a fishing pole. Most of the things needed to run the bot is here. Unless you're wanna know the code. Then, you're probably going to read that in just a few seconds.
 
 
 
-Tose-app is a bot that periodically checks KAT for new episodes and publishes a link alongside a magnet link.
-It also has the feature of giving snide replies in conversations.
+Jack is a indev bot forked from a private repo.
+Indev, so I might add anything I wish
 
 
 A server PC is required to run these scripts, so yes, be sure to have one lying around.
@@ -45,14 +45,6 @@ Example: `python manager.py --add The Flash -s 2 -e 19`
 
 This is the main file. Almost always, this is the only script you'll ever need to run. Manages shows and seasons and episodes and stuff pre-search. Time `6 a.m. - 7 a.m. (IST` have been hard-coded in this file. Change variables `startTime` and `endTime` as required (Won't need to, mostly)
 
-
-### script.py
-**syntax:** `python script.py <serie> -s [X]X -e [Y]Y`
-
-Example: `python script.py The Flash -s 2 -e 19`
-
-Actually searches Kickass Torrents, get results and pick one. Run this for _1-time search-and-send_ Then runs send_message.py to send hangouts messages.
-
 ### send_message.py
 **syntax:** `python send_message.py <message> [conversation id]`
 
@@ -69,8 +61,6 @@ Only for our convenience, we have added (Yea Yea Yea we know) a few constants so
 Its kinda fun to run this script as Cleverbot will repond. Use at your own discretion because if you use this, you will lose all your popularity (If you have any) in hangouts.
 
 ### Things to know
-
-* The queue of pending episodes are stored in `data.js` in json format, which is automatically generated if it doesn't exist. Feel free to edit it, just maintain the structure.
 
 * refresh_token.txt contains the OAuth 2.0 token that lets the bot sign in as your given (or provided) user. Delete it, but you'll have to login again.
 
@@ -90,7 +80,7 @@ In older versions, we used a script, but after a few fixes, you no longer will n
 
 ### Who do I talk to? ###
 
-If you happen to find a bug (highly likely with these alpha grade scripts), [create an issue here](https://bitbucket.org/tose-project/tose-app/issues).
+If you happen to find a bug (highly likely with these noob grade scripts), create an issue [here](https://bitbucket.org/tose-project/tose-app/issues).
 
 If you have a question, do the same thing as above.
 
@@ -98,7 +88,7 @@ If they don't respond, this file gives you the permission to do the following -
 
 1. Send message
 
-2. Repeat until enter key is pulpy
+2. Repeat until your enter key is pulpy
 
 * Repo owner, any admin or developer.
 * ~~Other community or team contact~~
