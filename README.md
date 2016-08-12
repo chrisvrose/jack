@@ -38,13 +38,6 @@ ALL, except wherever mentioned. Because otherwise it wouldn't be in this project
 
 The various scripts have been documented here
 
-### manager.py
-**syntax:** `python manager.py --add <serie> -s [X]X -e [Y]Y`
-
-Example: `python manager.py --add The Flash -s 2 -e 19`
-
-This is the main file. Almost always, this is the only script you'll ever need to run. Manages shows and seasons and episodes and stuff pre-search. Time `6 a.m. - 7 a.m. (IST` have been hard-coded in this file. Change variables `startTime` and `endTime` as required (Won't need to, mostly)
-
 ### send_message.py
 **syntax:** `python send_message.py <message> [conversation id]`
 
