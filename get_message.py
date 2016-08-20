@@ -2,11 +2,13 @@
 import asyncio
 import hangups
 import sys, os
-##import random
+import random
+import time
 from google.protobuf import descriptor_pb2
 from cleverbot import Cleverbot
 
 cb = Cleverbot()
+
 
 REFRESH_TOKEN_PATH = 'refresh_token.txt'    #Stores the refresh token after using a auth token once
 
@@ -21,31 +23,36 @@ def main():
 @asyncio.coroutine
 def on_state_update(state_update):
     if state_update.HasField('conversation'):
-        ##print(state_update.conversation)
+        # print(state_update.conversation)
         CONVERSATION_ID = state_update.conversation.conversation_id.id
-
         msg = state_update.event_notification.event.chat_message.message_content.segment[0].text
-
         print("Message captured: ",msg)
-
-        if(state_update.event_notification.event.self_event_state.user_id.chat_id == state_update.event_notification.event.sender_id.chat_id):
+        if(state_update.event_notification.event.self_event_state.user_id.chat_id != state_update.event_notification.event.sender_id.chat_id):
             if msg.lower().startswith("@bot"):
-                if "stfu" in msg.lower():
-                    send_message("Shutting Down",CONVERSATION_ID)
+                if "identify" in msg.lower():
+                    processMsg("Its me, Jack!",CONVERSATION_ID)
+                if "exit" in msg.lower():
                     sys.exit(0)
                 if "cid" in msg.lower():
-                    send_message(CONVERSATION_ID,CONVERSATION_ID)
+                    processMsg(CONVERSATION_ID,CONVERSATION_ID)
+                if "time" in msg.lower():
+                    stime = time.strftime('%l:%M%p, %b %d %Y, %z')
+                    processMsg(stime,CONVERSATION_ID)
             else:
-                processMsg(msg, CONVERSATION_ID)
+                processMsg(msg, CONVERSATION_ID, True)
 
-def processMsg(msg, cid):
-    reply = cb.ask(msg)
-    ##print("[get][processMsg]", reply)
-    asyncio.async(send_message(client,reply,cid))
+def processMsg(msg, cid,rep = False):
+    #This is implemented like such - passing true to the function uses the cleverbot function, else the message is sent as such
+    if(rep):
+        reply = cb.ask(msg)
+        print("[processMsg]", reply)
+        asyncio.async(send_message(client,reply,cid))
+    else:
+        asyncio.async(send_message(client,msg,cid))
 
 
 def send_message(client,msg,cid):
-    print("[get] Running send_message")
+    print("[send_message]")
     request = hangups.hangouts_pb2.SendChatMessageRequest(
         request_header=client.get_request_header(),
         event_request_header=hangups.hangouts_pb2.EventRequestHeader(
@@ -64,6 +71,7 @@ def send_message(client,msg,cid):
         yield from client.send_chat_message(request)
     except:
         print("ERROR::",sys.exc_info()[0])
+
 
 
 if __name__ == '__main__':
