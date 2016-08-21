@@ -4,8 +4,8 @@
 
 
 
-Jack is a indev bot forked from a private repo.
-Indev, so I might add anything I wish
+Jack is a indev bot forked from a previous project.
+Indev, so I might add anything I wish.
 
 
 A server PC is required to run these scripts, so yes, be sure to have one lying around.
@@ -79,7 +79,7 @@ Well, it contains three things, the bot's name, custom responses, and the lines 
 
 Yeah, it is something in Debian-based distributions (probably others too) that python has `real big` issues. In there, `python` stands for Python v2.7, which basically trashes our project.
 
-Ubuntu especially, is no exception (Ubuntu being the platform it is also tested on). You will notice this as "syntax" issues, especially in the `send_message.py`.
+Ubuntu especially, is no exception (Ubuntu being the platform it is also tested on). You will notice this as "syntax" issues.
 
 Hence, if such occurs, run with `python3` and not `python`
 
