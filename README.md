@@ -13,7 +13,7 @@ A server PC is required to run these scripts, so yes, be sure to have one lying 
 
 ## Files to care about
 
-ALL, except wherever mentioned. Because otherwise it wouldn't be in this project.
+Most of them are required,as they are part of the project files
 
 
 ## How do I get set up?
@@ -36,25 +36,35 @@ ALL, except wherever mentioned. Because otherwise it wouldn't be in this project
 
 ## Usage
 
-The various scripts have been documented here
+###Scripts###
 
-### send_message.py
+#### res.sh
+**syntax:** `./res.sh`
+
+This script is for *drum roll* Linux users who'd like to keep the bot running. It will restart the bot if it crashes.
+
+Note : It counts keyboard interrupts as a crash, and allows a 20 second gap where if CTL+C is pressed again, it will quit
+
+Recommendation : `screen [-S *session name*] ./res.sh`
+
+This will keep the service separated, and you can attach back to it later if you detach by using `CTL+A+D`. Refer to [screen manual](https://www.gnu.org/software/screen/manual/screen.html) for help.
+
+#### send_message.py
 **syntax:** `python send_message.py <message> [conversation id]`
 
-Example: `python send_message.py "Hello There"`
+Send a message to a specified conversation ID.
 
-Example: `python send_message.py "Hello There" "HuGEconVERSATIONID"`
-
-Example: `python send_message.py "Hello There" "shortconvname"`
-
-Send message using Hangouts. Used by script.py to send links. Recipient can be selected, but its rather tedious. Edit with any text editor and change the value of `CONVERSATION_ID`.
-Only for our convenience, we have added (Yea Yea Yea we know) a few constants so that we no longer need the huge cids for testing.
-
-### get_message.py
+#### get_message.py
 **syntax:** `python get_message.py`
 
 Using prop.json, the name and custom responses will be used whenever a message with the format '*name*, *command/question*' is sent to it. 
-Otherwise, cleverbot will be used for responses. 
+Otherwise, Cleverbot will be used for responses. 
+
+###Other files###
+
+#### prop.json
+
+Well, it contains three things, the bot's name, custom responses, and the lines that are invoked when the user enters an invalid code. Handle with care, don't break
 
 ### Things to know
 
@@ -69,9 +79,9 @@ Otherwise, cleverbot will be used for responses.
 
 Yeah, it is something in Debian-based distributions (probably others too) that python has `real big` issues. In there, `python` stands for Python v2.7, which basically trashes our project.
 
-Ubuntu, especially is no exception (Ubuntu being the platform it is also tested on). You will notice this as "syntax" issues, especially in the `send_message.py`.
+Ubuntu especially, is no exception (Ubuntu being the platform it is also tested on). You will notice this as "syntax" issues, especially in the `send_message.py`.
 
-In older versions, we used a script, but after a few fixes, you no longer will need (or be able to find) it. Run all commands with `python3` (Instead of `python`)
+Hence, if such occurs, run with `python3` and not `python`
 
 
 ### Who do I talk to? ###
