@@ -12,14 +12,13 @@ from cleverbot import Cleverbot
 # Calls up the cleverbot instance
 cb = Cleverbot()
 
-
 REFRESH_TOKEN_PATH = 'refresh_token.txt'    # Stores the refresh token after using a auth token once
 
+# Opens the database for checking up reponses
 with open('prop.json') as data_file:
    data = json.load(data_file)
 
-#print(data)
-#print(data["name"])
+print("Opened")
 
 def main():
     global client
@@ -36,30 +35,35 @@ def on_state_update(state_update):
         #print(state_update.conversation)
         CONVERSATION_ID = state_update.conversation.conversation_id.id
         segment_length = range(len(state_update.event_notification.event.chat_message.message_content.segment))
-        #msg = state_update.event_notification.event.chat_message.message_content.segment[0].text
         # Join all message segments into one piece properly, and not have one message segment
         msg = " ".join([state_update.event_notification.event.chat_message.message_content.segment[x].text for x in segment_length])
         pmsg = msg.lower()
         if(state_update.event_notification.event.self_event_state.user_id.chat_id != state_update.event_notification.event.sender_id.chat_id):
             print("Message captured: ",msg)
-            #print(state_update.event_notification.event.chat_message)
             if pmsg.startswith((data["name"].lower()+",")):
                 tmsg = pmsg[(len(data['name'])+1):].strip()
-                print(tmsg)
-                if "identify" in pmsg:
-                    processMsg(("Its me, "+data["name"]+"!"),CONVERSATION_ID)
                 if "exit" in pmsg:
                     sys.exit(0)
-                if "cid" in pmsg:
-                    processMsg(CONVERSATION_ID,CONVERSATION_ID)
-                if "time" in pmsg:
-                    stime = time.strftime('%l:%M%p, %b %d %Y, %z')
-                    processMsg(stime,CONVERSATION_ID)
-                if tmsg in data:
-                    processMsg(random.choice(data[tmsg]),CONVERSATION_ID)
+                if tmsg in data["question"]:
+                    resp = format_and_replace(random.choice(data["question"][tmsg]),CONVERSATION_ID)
+                    processMsg(resp,CONVERSATION_ID)
+                else:
+                    processMsg(random.choice(data["invalid"]),CONVERSATION_ID)
             else:
                 processMsg(msg, CONVERSATION_ID, 1)
 
+
+
+def format_and_replace(msg,cid="Unavailable"):
+    if "(Name)" in msg:
+        msg = msg.replace("(Name)", data["name"])
+    if "(Time)" in msg:
+        msg = msg.replace("(Time)", time.strftime('%l:%M%p, %b %d %Y'))
+    if "(Time+z)" in msg:
+        msg = msg.replace("(Time+z)",  time.strftime('%l:%M%p, %b %d %Y, %z'))
+    if "(cid)" in msg:
+        msg = msg.replace("(cid)", cid)
+    return msg
 
 
 def processMsg(msg, cid,rep = 0):
@@ -73,9 +77,8 @@ def processMsg(msg, cid,rep = 0):
 
 
 
-
 def send_message(client,msg,cid):
-    print("[send_message]")
+    print("[send_message] - ",msg)
     request = hangups.hangouts_pb2.SendChatMessageRequest(
         request_header=client.get_request_header(),
         event_request_header=hangups.hangouts_pb2.EventRequestHeader(
