@@ -53,13 +53,14 @@ Only for our convenience, we have added (Yea Yea Yea we know) a few constants so
 ### get_message.py
 **syntax:** `python get_message.py`
 
-Its kinda fun to run this script as Cleverbot will repond. Use at your own discretion because if you use this, you will lose all your popularity (If you have any) in hangouts.
+Using prop.json, the name and custom responses will be used whenever a message with the format '*name*, *command/question*' is sent to it. 
+Otherwise, cleverbot will be used for responses. 
 
 ### Things to know
 
 * refresh_token.txt contains the OAuth 2.0 token that lets the bot sign in as your given (or provided) user. Delete it, but you'll have to login again.
 
-* The non-essential folder is non essential. You may delete it, but why waste energy? Let it be.
+* The prop.json can be edited to insert new responses to commands/questions
 
 * Sorry for the commit names. We ae trying our best to sound more professional :(.
 
