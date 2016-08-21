@@ -3,25 +3,13 @@ import asyncio
 import hangups
 from sys import argv
 
-## Some conversation IDs for testing.
-# Rithvik Vibhu: UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ
-# ToSE group:  UgyT6DYhh50bUOijMVh4AaABAQ
-# ToSE DevTest group: Ugx56o6iNATAA80XrKp4AaABAQ
-# Test group: Ugw-YMKhMfDDCpS7KiV4AaABAQ
-
 # Path where OAuth refresh token is saved, allowing hangups to remember yourcredentials.
 REFRESH_TOKEN_PATH = 'refresh_token.txt'
 
 def sendHangoutsMessage(msg, cid=None):
-    
     if cid == None:
         cid = 'UgyT6DYhh50bUOijMVh4AaABAQ'
-    cid = cid.replace("Dev","Ugx56o6iNATAA80XrKp4AaABAQ")
-    cid = cid.replace("ToSE","UgyT6DYhh50bUOijMVh4AaABAQ")
-    cid = cid.replace("Rithvik","UgzTQ7JmCpWG_Peinjx4AaABAagB_IuSBQ")
-    
     print("Sending hangouts message: ", msg, "\nTo: ",cid)
-    
     cookies = hangups.auth.get_auth_stdin(REFRESH_TOKEN_PATH)
     client = hangups.Client(cookies)
     client.on_connect.add_observer(lambda: asyncio.async(send_message(client,msg,cid)))
@@ -53,12 +41,10 @@ def send_message(client,msg,cid):
 
 if __name__ == '__main__':
 
-    if len(argv)==1: MESSAGE = "Yolo"        #No arguments - Why, don't ask us, its your job to provide a message argument dude
+    if len(argv)==1: MESSAGE = "Yolo"        #No arguments - Why, don't ask us, its your job to provide a message argument
     else: MESSAGE = argv[1]
-    
     if len(argv) == 3: CONVERSATION_ID = argv[2]
     else: CONVERSATION_ID = None
-    
     sendHangoutsMessage(MESSAGE, CONVERSATION_ID)
 else:
     print("[send] ",__name__, " module loaded")

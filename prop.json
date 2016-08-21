@@ -1,6 +1,12 @@
 {
     "name" : "Jack",
     "question" : {
+        "what can you do" : [
+            "Here, is my json \n (list)"
+        ],
+        "list" : [
+            "(list)"
+        ],
         "who are you" : [
             "I am (Name), duh",
             "Why do you even ask when you called me by my name?",

@@ -63,6 +63,8 @@ def format_and_replace(msg,cid="Unavailable"):
         msg = msg.replace("(Time+z)",  time.strftime('%l:%M%p, %b %d %Y, %z'))
     if "(cid)" in msg:
         msg = msg.replace("(cid)", cid)
+    if "(list)" in msg:
+        msg = msg.replace("(list)", json.dumps(data["question"]))
     return msg
 
 
