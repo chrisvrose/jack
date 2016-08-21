@@ -18,21 +18,14 @@ Most of them are required,as they are part of the project files
 
 ## How do I get set up?
 
-1. Install python 3.5.x [from here](https://www.python.org/downloads/release/python-351/) [Scroll down to the end] {No, this isn't backwards-compatible with python 2.7} or if you're running Ubuntu, `sudo apt-get install python3 python3-pip`.
+1. Setup python. Sorry, no explanation on that, as there are so many different ways to do so.
 
-2. Only if you are using Windows, grab git for Windows. Or, you can get SourceTree, and use the git terminal from there.
-
-3. Download the code with git:
+2. Download the code with git:
     * By git:
 `git clone https://bitbucket.org/tose-project/tose-app` (Recommended)
     * By downloading src: [Click here and then 'Download Repository'](https://bitbucket.org/tose-project/tose-app/downloads). Extract it.
 
-4. In terminal (Linux/OS X) or command line (Windows), navigate to the root of the folder using `cd` 
-
-5. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` in Linux._
-
-6. Profit?!
-
+3. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` (Or `sudo -H` if asked to) in Linux._
 
 ## Usage
 
@@ -90,11 +83,6 @@ If you happen to find a bug (highly likely with these noob grade scripts), creat
 
 If you have a question, do the same thing as above.
 
-If they don't respond, this file gives you the permission to do the following - 
-
-1. Send message
-
-2. Repeat until your enter key is pulpy
 
 * Repo owner, any admin or developer.
 * ~~Other community or team contact~~
