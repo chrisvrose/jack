@@ -4,6 +4,6 @@
 while true
 do
 python3 get_message.py # Replace with python if required
-echo "Waiting for 15 seconds. Press CTL+C to cancel"
+echo "Waiting for 15 seconds. Press CTL+C to shutdown"
 sleep 15
 done
