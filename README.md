@@ -54,7 +54,7 @@ Only for our convenience, we have added (Yea Yea Yea we know) a few constants so
 **syntax:** `python get_message.py`
 
 Using prop.json, the name and custom responses will be used whenever a message with the format '*name*, *command/question*' is sent to it. 
-Otherwise, cleverly will be used for responses. 
+Otherwise, cleverbot will be used for responses. 
 
 ### Things to know
 
