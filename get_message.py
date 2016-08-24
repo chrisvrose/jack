@@ -104,3 +104,5 @@ def send_message(client,msg,cid):
 
 if __name__ == '__main__':
     main()
+else:
+    print("[get_message]:loaded")
