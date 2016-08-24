@@ -1,5 +1,2 @@
-schedule
-feedparser
-pytz
 git+https://github.com/tdryer/hangups
 cleverbot
