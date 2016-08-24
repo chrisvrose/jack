@@ -47,18 +47,13 @@ No syntax as per needed.
 
 Windows equivalent of the `res.sh` file.
 
-
-
-#### send_message.py
-**syntax:** `python send_message.py <message> [conversation id]`
-
-Send a message to a specified conversation ID.
-
 #### get_message.py
 **syntax:** `python get_message.py`
 
 Using prop.json, the name and custom responses will be used whenever a message with the format '*name*, *command/question*' is sent to it. 
 Otherwise, Cleverbot will be used for responses. 
+You can also use its `processMsg(string msg,string conversation_id)` to send messages.
+If you'd like to use a message to reply with cleverbot, use `processMsg(string question,string conversation_id, 1)`. The 1, tells the script to fetch and use cleverbot's answer.
 
 ###Other files###
 

@@ -3,7 +3,7 @@
 
 result=1
 while [ $result -ne 0 ]; do
-  python3 get_message.py
+  python3 messages.py
   result=$?
   if [ $result -ne 0 ]; then
     echo "Not sure if crashed or quit by ctl+c. Press ctl+c to quit"
