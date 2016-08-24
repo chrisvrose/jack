@@ -18,14 +18,14 @@ Most of them are required,as they are part of the project files
 
 ## How do I get set up?
 
-1. Setup python. Sorry, no explanation on that, as there are so many different ways to do so.
+1. Setup python. Sorry, no explanation on that, as there are so many different ways to do so. If you're on Windows, **do not forget** to add python and pip, etc to the PATH during installation
 
 2. Download the code with git:
     * By git:
 `git clone https://bitbucket.org/tose-project/tose-app` (Recommended)
     * By downloading src: [Click here and then 'Download Repository'](https://bitbucket.org/tose-project/tose-app/downloads). Extract it.
 
-3. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` (Or `sudo -H` if asked to) in Linux._
+3. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. If you're in Windows, run the `setup.py` file. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` (Or `sudo -H` if asked to) in Linux._
 
 ## Usage
 
@@ -41,6 +41,13 @@ Note : It counts keyboard interrupts as a crash, and allows a 20 second gap wher
 Recommendation : `screen [-S *session name*] ./res.sh`
 
 This will keep the service separated, and you can attach back to it later if you detach by using `CTL+A+D`. Refer to [screen manual](https://www.gnu.org/software/screen/manual/screen.html) for help.
+
+#### res.bat
+No syntax as per needed.
+
+Windows equivalent of the `res.sh` file.
+
+
 
 #### send_message.py
 **syntax:** `python send_message.py <message> [conversation id]`
