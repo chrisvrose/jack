@@ -22,8 +22,8 @@ Most of them are required,as they are part of the project files
 
 2. Download the code with git:
     * By git:
-`git clone https://bitbucket.org/tose-project/tose-app` (Recommended)
-    * By downloading src: [Click here and then 'Download Repository'](https://bitbucket.org/tose-project/tose-app/downloads). Extract it.
+`git clone https://bitbucket.org/chrisvrose/jack` (Recommended)
+    * By downloading src: [Click here and then 'Download Repository'](https://bitbucket.org/chrisvrose/jack/downloads). Extract it.
 
 3. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. If you're in Windows, run the `setup.py` file. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` (Or `sudo -H` if asked to) in Linux._
 
