@@ -81,10 +81,5 @@ Hence, if such occurs, run with `python3` and not `python`
 
 ### Who do I talk to? ###
 
-If you happen to find a bug (highly likely with these noob grade scripts), create an issue [here](https://bitbucket.org/tose-project/tose-app/issues).
-
-If you have a question, do the same thing as above.
-
-
 * Repo owner, any admin or developer.
 * ~~Other community or team contact~~
