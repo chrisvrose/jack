@@ -9,6 +9,8 @@ import json
 from google.protobuf import descriptor_pb2
 from cleverbot import Cleverbot
 
+import et
+
 # Calls up the cleverbot instance
 cb = Cleverbot()
 
@@ -17,8 +19,14 @@ REFRESH_TOKEN_PATH = 'refresh_token.txt'    # Stores the refresh token after usi
 # Opens the database for checking up reponses
 with open('prop.json') as data_file:
    data = json.load(data_file)
+   print("Successfully imported Settings")
+with open('feeds.json') as data_file:
+   feeds = json.load(data_file)
+   print("Successfully imported Feeds")
 
 print("Opened")
+nresp = True
+print("Name:",data["name"])
 
 def main():
     global client
@@ -44,16 +52,26 @@ def on_state_update(state_update):
                 tmsg = pmsg[(len(data['name'])+1):].strip()
                 if "exit" in pmsg:
                     sys.exit(0)
-                if tmsg in data["question"]:
+                elif tmsg in data["question"]:
                     resp = format_and_replace(random.choice(data["question"][tmsg]),CONVERSATION_ID)
                     processMsg(resp,CONVERSATION_ID)
+                elif "sleep" in tmsg:
+                    nresp = False;
+                elif "wake up" in tmsg:
+                    nresp = True;
+                elif "give me " in tmsg:
+                    query = tmsg.replace("give me ","")
+                    ep = query.split(" of ")[0].strip();
+                    show = query.replace(ep+" of ","").strip();
+                    url = processQuery(show,ep)
+                    processMsg(url,CONVERSATION_ID)
                 else:
                     processMsg(random.choice(data["invalid"]),CONVERSATION_ID)
             else:
                 processMsg(msg, CONVERSATION_ID, 1)
 
 
-
+# To substitute some things into answers
 def format_and_replace(msg,cid="Unavailable"):
     if "(Name)" in msg:
         msg = msg.replace("(Name)", data["name"])
@@ -66,6 +84,12 @@ def format_and_replace(msg,cid="Unavailable"):
     if "(list)" in msg:
         msg = msg.replace("(list)", json.dumps(data["question"]))
     return msg
+
+def processQuery(show,ep):
+    for a,b in feeds.items():
+        print(show," ",a," ",b["on"])
+        if show in b["on"]:
+            return(et.search(a,ep))
 
 
 def processMsg(msg, cid,rep = 0):
@@ -99,6 +123,8 @@ def send_message(client,msg,cid):
         yield from client.send_chat_message(request)
     except:
         print("ERROR::",sys.exc_info()[0])
+
+
 
 
 
