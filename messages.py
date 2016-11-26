@@ -13,8 +13,9 @@ import et
 
 # Calls up the cleverbot instance
 cb = Cleverbot()
-
 REFRESH_TOKEN_PATH = 'refresh_token.txt'    # Stores the refresh token after using a auth token once
+nresp = True
+
 
 # Opens the database for checking up reponses
 with open('prop.json') as data_file:
@@ -25,11 +26,11 @@ with open('feeds.json') as data_file:
    print("Successfully imported Feeds")
 
 print("Opened")
-nresp = True
 print("Name:",data["name"])
 
 def main():
     global client
+    nresp = True
     cookies = hangups.auth.get_auth_stdin(REFRESH_TOKEN_PATH)
     client = hangups.Client(cookies)
     client.on_state_update.add_observer(on_state_update)
@@ -56,9 +57,9 @@ def on_state_update(state_update):
                     resp = format_and_replace(random.choice(data["question"][tmsg]),CONVERSATION_ID)
                     processMsg(resp,CONVERSATION_ID)
                 elif "sleep" in tmsg:
-                    nresp = False;
-                elif "wake up" in tmsg:
-                    nresp = True;
+                    snresp(False);
+                elif "wake" in tmsg:
+                    snresp(True);
                 elif "give me " in tmsg:
                     query = tmsg.replace("give me ","")
                     ep = query.split(" of ")[0].strip();
@@ -68,7 +69,19 @@ def on_state_update(state_update):
                 else:
                     processMsg(random.choice(data["invalid"]),CONVERSATION_ID)
             else:
-                processMsg(msg, CONVERSATION_ID, 1)
+                if(qnresp()==True):
+                    processMsg(msg, CONVERSATION_ID, 1)
+                    print(qnresp())
+                else:
+                    print("Sleeping. Ignoring.")
+
+def snresp(bv):
+    global nresp
+    nresp = bv
+    print("New state,",nresp)
+
+def qnresp():
+    return nresp
 
 
 # To substitute some things into answers
