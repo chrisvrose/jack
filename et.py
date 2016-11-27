@@ -9,7 +9,8 @@ def main():
 
 
 def search(query,ep):
-	eps = html.escape(query.replace("(ep)",ep.upper()))
+	# eps - episode search text
+	eps = html.escape(query.replace("(ep)",epsf(ep)))
 	print(eps)
 	rss = feedparser.parse("https://extratorrent.cc/rss.xml?type=search&search="+eps)
 	link = rss["entries"][0]["links"][0]["href"].replace("http://","https://")
@@ -17,6 +18,13 @@ def search(query,ep):
 	print("Found:",mgn)
 	return(mgn)
 
+# Formatting numbers:
+def epsf(ep):
+	m = re.search('[sS](\d{1,2})[Ee](\d{1,2})', ep)
+	season, episode = m.group(1).zfill(2), m.group(2).zfill(2)
+	# rep - Rebuilt episode number
+	rep = "S" + season + "E" + episode
+	return(rep)
 
 def ttom(link):
 	details = urlopen(Request(link, headers={'User-Agent': 'Mozilla'})).read().decode()
