@@ -4,6 +4,10 @@
         "what can you do" : [
             "Here, is my json \n (list)"
         ],
+        "status" : [
+            "I am currently (status)",
+            "Currently (status)"
+        ],
         "list" : [
             "(list)"
         ],
@@ -47,7 +51,7 @@
         ]
     },
     "invalid" : [
-        "wut",
+        "wut lol",
         "Pardon?",
         "Sorry what?"
     ]
