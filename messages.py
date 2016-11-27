@@ -60,7 +60,7 @@ def on_state_update(state_update):
                     snresp(False);
                 elif "wake" in tmsg:
                     snresp(True);
-                elif "give me " in tmsg:
+                elif "give me " in tmsg or "get me" in tmsg:
                     query = tmsg.replace("give me ","")
                     ep = query.split(" of ")[0].strip();
                     show = query.replace(ep+" of ","").strip();
@@ -96,6 +96,8 @@ def format_and_replace(msg,cid="Unavailable"):
         msg = msg.replace("(cid)", cid)
     if "(list)" in msg:
         msg = msg.replace("(list)", json.dumps(data["question"]))
+    if "(status)" in msg:
+        msg = msg.replace("(status)",("awake" if qnresp() else "sleeping"))
     return msg
 
 def processQuery(show,ep):
