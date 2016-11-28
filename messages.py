@@ -7,12 +7,11 @@ import time
 import json
 #from pprint import pprint
 from google.protobuf import descriptor_pb2
-from cleverbot import Cleverbot
 
+
+import cbot
 import et
 
-# Calls up the cleverbot instance
-cb = Cleverbot()
 REFRESH_TOKEN_PATH = 'refresh_token.txt'    # Stores the refresh token after using a auth token once
 nresp = True
 
@@ -110,7 +109,8 @@ def processQuery(show,ep):
 def processMsg(msg, cid,rep = 0):
     # This is implemented like such - passing true to the function uses the cleverbot function, else the message is sent as such
     if(rep==1):
-        reply = cb.ask(msg)
+        #reply = cb.ask(msg)
+        reply = cbot.ask(msg)
         print("[processMsg]", reply)
         asyncio.async(send_message(client,reply,cid))
     else:
