@@ -52,3 +52,5 @@ Contains information for interpreting '*name*, get me *episode* of *show*'.
 * The prop.json can be edited to insert new responses to commands/questions
 
 * Sorry for the commit names. We are trying our best to sound more professional :(.
+
+* I have no idea what's going on
