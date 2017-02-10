@@ -13,5 +13,14 @@
 	},
 	"Supergirl.(ep).HDTV.x264-LOL[ettv]":{
 		"on": ["supergirl"]
+	},
+	"Lucifer.(ep).HDTV.x264-LOL[ettv]":{
+		"on": ["lucifer"]
+	},
+	"iZombie.(ep).HDTV.x264-LOL[ettv]":{
+		"on": ["izombie"]
+	},
+	"Silicon.Valley.(ep).HDTV.x264-KILLERS[ettv]":{
+		"on": ["silicon valley","sv"]
 	}
 }
