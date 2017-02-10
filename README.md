@@ -13,7 +13,7 @@ A server PC is required to run these scripts, so yes, be sure to have one lying 
 
 ## Files to care about
 
-Most of them are required, as they are part of the project files.
+ALL. I add only files that are required.
 
 
 ## How do I get set up?
@@ -34,6 +34,24 @@ Otherwise, Cleverbot will be used for responses.
 You can also use its `processMsg(string msg,string conversation_id)` to send messages.
 If you'd like to use a message to reply with cleverbot, use `processMsg(string question,string conversation_id, 1)`. The 1, tells the script to fetch and use cleverbot's answer.
 Also, it fetches magnet links of defined sources from 'feeds.json'.
+
+#### screen.sh
+**syntax:** `./screen.sh`
+
+Creates a `screen` session that can be detached by CTL+A+D and reattached by `screen -r jack`
+
+#### res.sh
+**syntax:** `./res.sh
+
+Sets up an infinite loop that exits only if the bot exits with a status code '0'. Useful to battle network issues.
+
+#### res.bat
+
+Refer above.
+
+#### et.py and cbot.py
+
+They are used internally by `messages.py` to provide functionality. I used different files so as to be able to differentiate between code.
 
 ###Other kinda important files###
 
