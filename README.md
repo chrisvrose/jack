@@ -1,8 +1,8 @@
 # Jack
 
-#### NOTE: Reading the code is about as tedious as catching a whale with a fishing pole. Most of the things needed to run the bot is here. Unless you're wanna know the code. Then, you're probably going to read that in just a few seconds.
+#### NOTE: Highly alpha-grade stuff here. Tread carefully. Code held together by cobwebs.
 
-
+#### Requirements : `hangups`, `chatterbot`, `feedparser`
 
 Jack is a indev bot forked from a previous project.
 Indev, so I might add anything I wish.
@@ -41,7 +41,7 @@ Also, it fetches magnet links of defined sources from 'feeds.json'.
 Creates a `screen` session that can be detached by CTL+A+D and reattached by `screen -r jack`
 
 #### res.sh
-**syntax:** `./res.sh
+**syntax:** `./res.sh`
 
 Sets up an infinite loop that exits only if the bot exits with a status code '0'. Useful to battle network issues.
 
@@ -62,6 +62,10 @@ Well, it contains three things, the bot's name, custom responses, and the lines 
 #### feeds.json
 
 Contains information for interpreting '*name*, get me *episode* of *show*'.
+
+#### database.json
+
+Contains the speech database of `chatterbot`.
 
 ### Things to know
 
