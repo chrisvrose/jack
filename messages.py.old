@@ -14,19 +14,16 @@ import et
 REFRESH_TOKEN_PATH = 'refresh_token.txt'    # Stores the refresh token after using a auth token once
 nresp = True
 global data
-global help
 
 # Opens the database for checking up reponses
 with open('prop.json') as data_file:
    data = json.load(data_file)
-   print("Loaded Settings")
-with open('usage.txt') as data_file:
-   help = data_file.read().replace('\n',' ')
-   print("Loaded Usage File")
+   print("Successfully imported Settings")
 with open('feeds.json') as data_file:
    feeds = json.load(data_file)
-   print("Loaded Feeds")
+   print("Successfully imported Feeds")
 
+print("Opened")
 print("Name:",data["name"])
 
 def main():
@@ -37,7 +34,6 @@ def main():
     client.on_state_update.add_observer(on_state_update)
     loop = asyncio.get_event_loop()
     loop.run_until_complete(client.connect())
-    print("Ready")
 
 @asyncio.coroutine
 def on_state_update(state_update):
@@ -52,13 +48,18 @@ def on_state_update(state_update):
         if(state_update.event_notification.event.self_event_state.user_id.chat_id != state_update.event_notification.event.sender_id.chat_id):
             #print(state_update.event_notification.event)
             #print("Message captured: ",msg)
-            tmsg = pmsg[(len(data['name'])+1):].replace(",","").replace(".","").strip()
-            #print(str(tuple(data["question-nc"].keys()))+" "+str(tmsg.startswith(tuple(data["question-nc"].keys()))))
-            # NON CONTEXT QUESTIONS
-            if pmsg.startswith(data["name"].lower()):
-                if tmsg in data["question-ci"]:
-                    resp = format_and_replace(random.choice(data["question-ci"][tmsg]))
+            if pmsg.startswith((data["name"].lower()+",")):
+                tmsg = pmsg[(len(data['name'])+1):].strip()
+                print(pmsg+":"+tmsg)
+                if "exit" in pmsg:
+                    sys.exit(0)
+                elif tmsg in data["question-nc"]:
+                    resp = format_and_replace(random.choice(data["question-nc"][tmsg]),CONVERSATION_ID)
                     processMsg(resp,CONVERSATION_ID)
+                elif "sleep" in tmsg:
+                    snresp(False);
+                elif "wake" in tmsg:
+                    snresp(True);
                 elif "give me " in tmsg or "get me" in tmsg:
                     query = tmsg.replace("give me ","")
                     ep = query.split(" of ")[0].strip();
@@ -68,15 +69,9 @@ def on_state_update(state_update):
                 elif "search" in tmsg:
                     query = tmsg.replace("search ","")
                     processQueryM(query,CONVERSATION_ID)
-                else:
-                    if(qnresp()):
-                        processMsg(msg,CONVERSATION_ID,1)
-            elif tmsg in data["question-nc"]:
-                resp = format_and_replace(random.choice(data["question-nc"][tmsg]))
-                processMsg(resp,CONVERSATION_ID)
             else:
                 if(qnresp()):
-                    processMsg(msg,CONVERSATION_ID,1)
+                    processMsg(msg, CONVERSATION_ID, 1)
 
 def snresp(bv):
     global nresp
@@ -90,16 +85,6 @@ def qnresp():
 
 # To substitute some things into answers
 def format_and_replace(msg,cid="Unavailable"):
-    if "(exit)" in msg:
-        sys.exit(0)
-    if "(help)" in msg:
-        msg = msg.replace("(help)",help)
-    if "(sleep)" in msg:
-        snresp(False)
-        msg = msg.replace("(sleep)","")
-    if "(wake)" in msg:
-        snresp(True)
-        msg = msg.replace("(wake)","")
     if "(Name)" in msg:
         msg = msg.replace("(Name)", data["name"])
     if "(Time)" in msg:
@@ -117,14 +102,10 @@ def format_and_replace(msg,cid="Unavailable"):
 
 #Processing single queries
 def processQueryS(show,ep):
-    b = False
     for a,b in feeds.items():
         print(show," ",a," ",b["on"])
         if show in b["on"]:
-            b = True
             return(et.search(a,ep))
-    if not b:
-        return("Invalid selection")
 
 #Processing multiple queries
 def processQueryM(query,cid):
@@ -132,6 +113,9 @@ def processQueryM(query,cid):
     for m,n in replies.items():
         for a,b in replies[m].items():
             processMsg(a+" : \n"+b,cid)
+        #processMsg(n.keys()[0]+" : ",cid)
+        #processMsg(n.values()[0],cid)
+#     return(et.search_gen(query,3))
 
 def processMsg(msg, cid,rep = 0):
     # This is implemented like such - passing true to the function uses the cleverbot function, else the message is sent as such

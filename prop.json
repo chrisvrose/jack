@@ -1,12 +1,31 @@
 {
     "name" : "Jack",
-    "question" : {
+    "question-nc" : {
+        "cid" : [
+            "(cid)"
+        ],
+        "time" : [
+            "The time is currently (Time+z)",
+            "Its (Time+z)"
+        ],
+        "random()" : ["0","1","2","3","4","5","6","7","8","9"],
+        "the cake is a lie" : [
+            "The 3rd one will never come...","Still alive...","Wheatley is dumb","B...Bu...But I wanted cake???"
+        ]
+    },
+    "question-ci": {
+        "exit":["(exit)No bad feelings..."],
+        "sleep":["(sleep)Going to sleep."],
+        "wake":["(wake)...And awake..."],
+        "help":["(help)"],
         "what can you do" : [
-            "Here, is my json \n (list)"
+            "Sigh. (help)",
+            "Well, That's not exactly fixed. (help)"
         ],
         "status" : [
             "I am currently (status)",
-            "Currently (status)"
+            "Currently (status)",
+            "Well, I am currently (status)"
         ],
         "list" : [
             "(list)"
@@ -15,23 +34,6 @@
             "I am (Name), duh",
             "Why do you even ask when you called me by my name?",
             "Insert random I don't know who (Name) is joke"
-        ],
-        "cid" : [
-            "(cid)"
-        ],
-        "time" : [
-            "The time is currently (Time+z)",
-            "Its (Time+z)"
-        ],
-        "joke" : [
-            "If I had a dollar for every girl that found me unattractive, they would eventually find me attractive.",
-            "Just read that 4,153,237 people got married last year, not to cause any trouble but shouldn't that be an even number?",
-            "Today a man knocked on my door and asked for a small donation towards the local swimming pool. I gave him a glass of water.",
-            "A recent study has found that women who carry a little extra weight live longer than the men who mention it.",
-            "I find it ironic that the colors red, white, and blue stand for freedom until they are flashing behind you.",
-            "You know that tingly little feeling you get when you like someone? That is your common sense leaving your body.",
-            "I hate when I am about to hug someone really sexy and my face hits the mirror.",
-            "Here have a cookie"
         ],
         "hello" : [
             "Hi",
@@ -46,11 +48,15 @@
             "Bonjour!",
             "Its-a me, (Name)!"
         ],
-        "random()" : [
-            "0","1","2","3","4","5","6","7","8","9"
-        ],
-        "the cake is a lie" : [
-            "The 3rd one will never come...","Still alive...","Wheatley is dumb","B...Bu...But I wanted cake??"
+        "joke" : [
+            "If I had a dollar for every girl that found me unattractive, they would eventually find me attractive.",
+            "Just read that 4,153,237 people got married last year, not to cause any trouble but shouldn't that be an even number?",
+            "Today a man knocked on my door and asked for a small donation towards the local swimming pool. I gave him a glass of water.",
+            "A recent study has found that women who carry a little extra weight live longer than the men who mention it.",
+            "I find it ironic that the colors red, white, and blue stand for freedom until they are flashing behind you.",
+            "You know that tingly little feeling you get when you like someone? That is your common sense leaving your body.",
+            "I hate when I am about to hug someone really sexy and my face hits the mirror.",
+            "Here have a cookie"
         ]
     },
     "invalid" : [
