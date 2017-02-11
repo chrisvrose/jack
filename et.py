@@ -11,7 +11,7 @@ def main():
 def search(query,ep):
 	# eps - episode search text
 	eps = html.escape(query.replace("(ep)",epsf(ep)))
-	print(eps)
+	#print(eps)
 	rss = feedparser.parse("https://extratorrent.cc/rss.xml?type=search&search="+eps)
 	#link = rss["entries"][0]["links"][0]["href"].replace("http://","https://")
 	mgn = rss

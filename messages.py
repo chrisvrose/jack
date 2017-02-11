@@ -6,8 +6,17 @@ import random
 import time
 import json
 from google.protobuf import descriptor_pb2
-
-
+from hangups.hangouts_pb2 import (
+TYPING_TYPE_STARTED, TYPING_TYPE_PAUSED, TYPING_TYPE_STOPPED,
+MEMBERSHIP_CHANGE_TYPE_LEAVE, MEMBERSHIP_CHANGE_TYPE_JOIN,
+HANGOUT_EVENT_TYPE_START, HANGOUT_EVENT_TYPE_END, HANGOUT_EVENT_TYPE_JOIN,
+HANGOUT_EVENT_TYPE_LEAVE, HANGOUT_EVENT_TYPE_COMING_SOON,
+HANGOUT_EVENT_TYPE_ONGOING, GROUP_LINK_SHARING_STATUS_OFF,
+GROUP_LINK_SHARING_STATUS_ON, NOTIFICATION_LEVEL_QUIET,
+NOTIFICATION_LEVEL_RING, SEGMENT_TYPE_TEXT, SEGMENT_TYPE_LINE_BREAK,
+SEGMENT_TYPE_LINK, OFF_THE_RECORD_STATUS_ON_THE_RECORD,
+OFF_THE_RECORD_STATUS_OFF_THE_RECORD
+)
 import cbot
 import et
 
@@ -50,33 +59,50 @@ def on_state_update(state_update):
         msg = " ".join([state_update.event_notification.event.chat_message.message_content.segment[x].text for x in segment_length])
         pmsg = msg.lower()
         if(state_update.event_notification.event.self_event_state.user_id.chat_id != state_update.event_notification.event.sender_id.chat_id):
-            #print(state_update.event_notification.event)
             #print("Message captured: ",msg)
+            # Removing name from query
             tmsg = pmsg[(len(data['name'])+1):].replace(",","").replace(".","").strip()
             #print(str(tuple(data["question-nc"].keys()))+" "+str(tmsg.startswith(tuple(data["question-nc"].keys()))))
-            # NON CONTEXT QUESTIONS
+            # CONTEXT QUESTIONS
             if pmsg.startswith(data["name"].lower()):
                 if tmsg in data["question-ci"]:
-                    resp = format_and_replace(random.choice(data["question-ci"][tmsg]))
+                    resp = format_and_replace(random.choice(data["question-ci"][tmsg]),CONVERSATION_ID)
                     processMsg(resp,CONVERSATION_ID)
-                elif "give me " in tmsg or "get me" in tmsg:
-                    query = tmsg.replace("give me ","")
+                elif "give me " in tmsg or "get me " in tmsg:
+                    query = tmsg.replace("give me ","").replace("get me ","")
                     ep = query.split(" of ")[0].strip();
                     show = query.replace(ep+" of ","").strip();
                     url = processQueryS(show,ep)
                     processMsg(url,CONVERSATION_ID)
-                elif "search" in tmsg:
+                elif "search " in tmsg:
                     query = tmsg.replace("search ","")
+                    print("Searching:",query)
                     processQueryM(query,CONVERSATION_ID)
                 else:
                     if(qnresp()):
                         processMsg(msg,CONVERSATION_ID,1)
-            elif tmsg in data["question-nc"]:
-                resp = format_and_replace(random.choice(data["question-nc"][tmsg]))
-                processMsg(resp,CONVERSATION_ID)
+            #elif tmsg in data["question-nc"]:
+            #    resp = format_and_replace(random.choice(data["question-nc"][tmsg]))
+            #    processMsg(resp,CONVERSATION_ID)
             else:
                 if(qnresp()):
                     processMsg(msg,CONVERSATION_ID,1)
+        #asyncio.async(set_typing(CONVERSATION_ID,TYPING_TYPE_STOPPED))
+
+
+def set_typing(cid,typing):
+    global client
+    try:
+        yield from client.set_typing(
+            hangups.hangouts_pb2.SetTypingRequest(
+                request_header=client.get_request_header(),
+                conversation_id=hangups.hangouts_pb2.ConversationId(id=cid),
+                type=typing,
+            )
+        )
+    except Exception as e:
+        print(e)
+
 
 def snresp(bv):
     global nresp
@@ -119,7 +145,7 @@ def format_and_replace(msg,cid="Unavailable"):
 def processQueryS(show,ep):
     b = False
     for a,b in feeds.items():
-        print(show," ",a," ",b["on"])
+        #print(show," ",a," ",b["on"])
         if show in b["on"]:
             b = True
             return(et.search(a,ep))
@@ -134,6 +160,8 @@ def processQueryM(query,cid):
             processMsg(a+" : \n"+b,cid)
 
 def processMsg(msg, cid,rep = 0):
+    #asyncio.async(set_typing(cid,TYPING_TYPE_STARTED))
+    #time.sleep(2)
     # This is implemented like such - passing true to the function uses the cleverbot function, else the message is sent as such
     if(rep==1):
         #reply = cb.ask(msg)

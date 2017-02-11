@@ -1,19 +1,15 @@
 {
     "name" : "Jack",
-    "question-nc" : {
-        "cid" : [
-            "(cid)"
-        ],
+    "question-ci": {
         "time" : [
             "The time is currently (Time+z)",
             "Its (Time+z)"
         ],
-        "random()" : ["0","1","2","3","4","5","6","7","8","9"],
         "the cake is a lie" : [
-            "The 3rd one will never come...","Still alive...","Wheatley is dumb","B...Bu...But I wanted cake???"
-        ]
-    },
-    "question-ci": {
+            "Oh hell NAW!","I SAW THE ENDING YOU LIEEE"
+        ],
+        "random()" : ["0","1","2","3","4","5","6","7","8","9"],
+        "cid":["(cid)"],
         "exit":["(exit)No bad feelings..."],
         "sleep":["(sleep)Going to sleep."],
         "wake":["(wake)...And awake..."],
@@ -37,6 +33,7 @@
         ],
         "hello" : [
             "Hi",
+            "YOLT BROTHER"
             "Yolo",
             "Hallo",
             "Hola",
@@ -44,6 +41,7 @@
         ],
         "hi" : [
             "Salute",
+            "You greet me with much ignorance. What do you think I am?"
             "Hello",
             "Bonjour!",
             "Its-a me, (Name)!"
