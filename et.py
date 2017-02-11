@@ -4,9 +4,14 @@ import feedparser
 import html
 import re
 
+
 def main():
 	print("Bye")
 
+
+
+def escape(query):
+	return(query.replace(" ","%20"))
 
 def search(query,ep):
 	# eps - episode search text
@@ -25,7 +30,8 @@ def search(query,ep):
 
 def search_gen(query,number):
 	rep = {}
-	rss = feedparser.parse("https://extratorrent.cc/rss.xml?type=search&search="+query)
+	rss = feedparser.parse("https://extratorrent.cc/rss.xml?type=search&search="+escape(query))
+	#print(rss["entries"])
 	number = number if len(rss["entries"]) > number else len(rss["entries"])
 	for i in range(number):
 		if(rss["entries"][i]["tags"][0]["term"].startswith("Adult")):
