@@ -68,13 +68,13 @@ def on_state_update(state_update):
                 if tmsg in data["question-ci"]:
                     resp = format_and_replace(random.choice(data["question-ci"][tmsg]),CONVERSATION_ID)
                     processMsg(resp,CONVERSATION_ID)
-                elif "give me " in tmsg or "get me " in tmsg:
-                    query = tmsg.replace("give me ","").replace("get me ","")
+                elif data["get-stuff-1"] in tmsg or data["get-stuff-2"] in tmsg:
+                    query = tmsg.replace(data["get-stuff-1"],"").replace(data["get-stuff-2"],"")
                     ep = query.split(" of ")[0].strip();
                     show = query.replace(ep+" of ","").strip();
                     url = processQueryS(show,ep)
                     processMsg(url,CONVERSATION_ID)
-                elif "search " in tmsg:
+                elif data["search-stuff"] in tmsg:
                     query = tmsg.replace("search ","")
                     print("Searching:",query)
                     processQueryM(query,CONVERSATION_ID)
@@ -201,4 +201,5 @@ def send_message(client,msg,cid):
 if __name__ == '__main__':
     main()
 else:
+    print("What are you trying to do? This module is usually run by main()")
     print("[get_message]:loaded")

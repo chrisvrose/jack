@@ -1,5 +1,8 @@
 {
     "name" : "Jack",
+    "get-stuff-1" : "get me ",
+    "get-stuff-2" : "give me ",
+    "search-stuff" : "search ",
     "question-ci": {
         "time" : [
             "The time is currently (Time+z)",
@@ -33,7 +36,7 @@
         ],
         "hello" : [
             "Hi",
-            "YOLT BROTHER"
+            "YOLT BROTHER",
             "Yolo",
             "Hallo",
             "Hola",
@@ -41,7 +44,7 @@
         ],
         "hi" : [
             "Salute",
-            "You greet me with much ignorance. What do you think I am?"
+            "You greet me with much ignorance. What do you think I am?",
             "Hello",
             "Bonjour!",
             "Its-a me, (Name)!"
