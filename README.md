@@ -14,6 +14,7 @@ A server PC is required to run these scripts, so yes, be sure to have one lying 
 ## Files to care about
 
 ALL. I add only files that are required.
+Except for those suffixed with .old, do whatever you want with them.
 
 
 ## How do I get set up?
