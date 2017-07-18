@@ -4,7 +4,6 @@ import feedparser
 import html
 import re
 
-
 def main():
 	print("Bye")
 
@@ -17,7 +16,7 @@ def search(query,ep):
 	# eps - episode search text
 	eps = html.escape(query.replace("(ep)",epsf(ep)))
 	#print(eps)
-	rss = feedparser.parse("https://extratorrent.cc/rss.xml?type=search&search="+eps)
+	rss = feedparser.parse("https://extra.to/rss.xml?type=search&search="+eps)
 	#link = rss["entries"][0]["links"][0]["href"].replace("http://","https://")
 	mgn = rss
 	#mgn = ttom(link)
@@ -28,16 +27,20 @@ def search(query,ep):
 	else:
 		return(mgn["entries"][0]["magneturi"])
 
-def search_gen(query,number):
+
+#n1 - is terminal max and n2 is number of viable results
+def search_gen(query,n1,n2):
 	rep = {}
-	rss = feedparser.parse("https://extratorrent.cc/rss.xml?type=search&search="+escape(query))
+	rss = feedparser.parse("https://extra.to/rss.xml?type=search&search="+escape(query))
 	#print(rss["entries"])
-	number = number if len(rss["entries"]) > number else len(rss["entries"])
-	for i in range(number):
-		if(rss["entries"][i]["tags"][0]["term"].startswith("Adult")):
-			rep[i] = {"NSFW. Ignoring.":""}
-		else:
-			rep[i] = {rss["entries"][i]["title"]:rss["entries"][i]["magneturi"]}
+	n1 = n1 if len(rss["entries"]) > n1 else len(rss["entries"])
+	j=0
+	for i in range(n1):
+		if( not (rss["entries"][i]["tags"][0]["term"].startswith("Adult"))):
+			j+=1
+			rep[j] = {rss["entries"][i]["title"]:rss["entries"][i]["magneturi"]}
+		if(j>n2):
+			break;
 	return(rep)
 	#return str
 

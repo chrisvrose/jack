@@ -18,12 +18,16 @@ SEGMENT_TYPE_LINK, OFF_THE_RECORD_STATUS_ON_THE_RECORD,
 OFF_THE_RECORD_STATUS_OFF_THE_RECORD
 )
 import cbot
-import et
+#import et
+import l33tx
 
+BROADCAST_GROUP_CID = 'UgyT6DYhh50bUOijMVh4AaABAQ'
 REFRESH_TOKEN_PATH = 'refresh_token.txt'    # Stores the refresh token after using a auth token once
 nresp = True
 global data
 global help
+
+
 
 # Opens the database for checking up reponses
 with open('prop.json') as data_file:
@@ -40,13 +44,13 @@ print("Name:",data["name"])
 
 def main():
     global client
-    nresp = True
+    nresp = False
     cookies = hangups.auth.get_auth_stdin(REFRESH_TOKEN_PATH)
     client = hangups.Client(cookies)
     client.on_state_update.add_observer(on_state_update)
     loop = asyncio.get_event_loop()
     loop.run_until_complete(client.connect())
-    print("Ready")
+    
 
 @asyncio.coroutine
 def on_state_update(state_update):
@@ -88,6 +92,19 @@ def on_state_update(state_update):
                 if(qnresp()):
                     processMsg(msg,CONVERSATION_ID,1)
         #asyncio.async(set_typing(CONVERSATION_ID,TYPING_TYPE_STOPPED))
+
+
+def set_focus(client, timeout):
+    request = hangups.hangouts_pb2.SetFocusRequest(
+        request_header=client.get_request_header(),
+        conversation_id=hangups.hangouts_pb2.ConversationId(
+            id=args.conversation_id
+        ),
+        type=hangups.hangouts_pb2.FOCUS_TYPE_FOCUSED,
+        timeout_secs=int(timeout),
+    )
+    yield from client.set_focus(request)
+
 
 
 def set_typing(cid,typing):
@@ -148,19 +165,19 @@ def processQueryS(show,ep):
         #print(show," ",a," ",b["on"])
         if show in b["on"]:
             b = True
-            return(et.search(a,ep))
+            return(l33tx.search(a,ep))
     if not b:
         return("Invalid selection")
 
 #Processing multiple queries
 def processQueryM(query,cid):
-    replies = et.search_gen(query,3)
+    replies = l33tx.search_gen(query,10,3)
     for m,n in replies.items():
         for a,b in replies[m].items():
             processMsg(a+" : \n"+b,cid)
 
 def processMsg(msg, cid,rep = 0):
-    #asyncio.async(set_typing(cid,TYPING_TYPE_STARTED))
+    #asyncio.async(set_focus(cid,10))
     #time.sleep(2)
     # This is implemented like such - passing true to the function uses the cleverbot function, else the message is sent as such
     if(rep==1):
