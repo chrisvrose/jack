@@ -1,6 +1,7 @@
 refresh_token.txt
 __pycache__/*
 database.json
+database.db
 database.json.old
 t3mp/*
 log.txt
