@@ -4,6 +4,9 @@
     "get-stuff-2" : "give me ",
     "search-stuff" : "search ",
     "question-ci": {
+        "ping" : [
+            "pong","PONG","Pong!"
+        ],
         "time" : [
             "The time is currently (Time+z)",
             "Its (Time+z)"

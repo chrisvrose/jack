@@ -3,7 +3,7 @@ from chatterbot import ChatBot
 chatbot = ChatBot(
 	'Jack Carlson',
 	trainer='chatterbot.trainers.ChatterBotCorpusTrainer',
-	database="./database.json"
+	database="./database.db"
 )
 
 def ask(query):

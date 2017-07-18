@@ -3,3 +3,4 @@ __pycache__/*
 database.json
 database.json.old
 t3mp/*
+log.txt
