@@ -15,16 +15,19 @@ def escape(query):
 
 def search(query,ep):
 	eps = query.replace("(ep)",epsf(ep))
-	return leetx.search(eps)[0].magnet
+	return leetx.search(eps)[0]
 
 
 
 def search_gen(query,n1=3,n2=1):
-	results = leetx.search(query)
+	results = leetx.search(query,n1)
+	print(results)
 	rep={}
 	j=0
-	for i in results:
-		rep[j] = {results[j].magnet}
+	l = len(results)
+	for i in range(l):
+		rep[j] = results[j]
+		j+=1
 	return rep
 
 
@@ -51,17 +54,6 @@ def epsf(ep):
 	# rep - Rebuilt episode number
 	rep = "S" + season + "E" + episode
 	return(rep)
-
-#def ttom(link):
-#	details = urlopen(Request(link, headers={'User-Agent': 'Mozilla'})).read().decode()
-#	if not details:
-#		return ''
-#	#match = re.search(r'href="(magnet:\?*)"', details)
-#	match = re.search(r'(href=\"magnet:.*nce\") title=\"Magnet link\"', details)
-#	if not match:
-#		return ''
-#	# Removing href and return
-#	return match.group(1).replace("href=\"","").replace("\"","")
 
 
 if __name__ == '__main__':

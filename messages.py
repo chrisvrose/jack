@@ -26,12 +26,13 @@ REFRESH_TOKEN_PATH = 'refresh_token.txt'    # Stores the refresh token after usi
 nresp = True
 global data
 global help
-
+global llength
 
 
 # Opens the database for checking up reponses
 with open('prop.json') as data_file:
    data = json.load(data_file)
+   llength = int(data["llength_init"])
    print("Loaded Settings")
 with open('usage.txt') as data_file:
    help = data_file.read().replace('\n',' ')
@@ -82,6 +83,10 @@ def on_state_update(state_update):
                     query = tmsg.replace("search ","")
                     print("Searching:",query)
                     processQueryM(query,CONVERSATION_ID)
+                elif data["length"] in tmsg:
+                    global llength
+                    llength = int(tmsg.split(" ")[1])
+                    processMsg("Length set:"+str(llength),CONVERSATION_ID)
                 else:
                     if(qnresp()):
                         processMsg(msg,CONVERSATION_ID,1)
@@ -153,6 +158,8 @@ def format_and_replace(msg,cid="Unavailable"):
         msg = msg.replace("(cid)", cid)
     if "(list)" in msg:
         msg = msg.replace("(list)", json.dumps(data["question"]))
+    if "(llength)" in msg:
+        msg = msg.replace("llength",str(llength))
     if "(status)" in msg:
         msg = msg.replace("(status)",("awake" if qnresp() else "sleeping"))
     return msg
@@ -165,16 +172,21 @@ def processQueryS(show,ep):
         #print(show," ",a," ",b["on"])
         if show in b["on"]:
             b = True
-            return(l33tx.search(a,ep))
+            return(l33tx.search(a,ep).magnet)
     if not b:
         return("Invalid selection")
 
 #Processing multiple queries
 def processQueryM(query,cid):
-    replies = l33tx.search_gen(query,10,3)
+    global llength
+    print(llength)
+    replies = l33tx.search_gen(query,llength,2)
     for m,n in replies.items():
-        for a,b in replies[m].items():
-            processMsg(a+" : \n"+b,cid)
+        processMsg(str(m)+" - \n"+n.title+" : \n"+n.magnet,cid)
+#        processMsg(n.magnet,cid)
+#        print(m," ",n);
+#        for a,b in replies[m].items():
+#            processMsg(a+" : \n"+b,cid)
 
 def processMsg(msg, cid,rep = 0):
     #asyncio.async(set_focus(cid,10))

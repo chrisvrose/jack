@@ -9,7 +9,7 @@ import re
 class BASE(object):
     url = 'https://1337x.to'
     search = '/search/{}/1/'
-    limit = 5
+    limit = 1
 
 
 class Torrent(object):
@@ -30,7 +30,7 @@ def _gb_to_mb(size_data1):
         return float(size_data[:-3])
 
 
-def search(query,status=False):
+def search(query,limit=BASE.limit):
     headers = {'User-Agent' : "Magic Browser"}
     req_url = BASE.url + BASE.search.format(quote_plus(query))
     #s = requests.get(req_url, headers=headers, verify=False)
@@ -62,16 +62,14 @@ def search(query,status=False):
 
         req_url = BASE.url + link
         #s = requests.get(req_url, headers=headers, verify=False)
-        #print(req_url)
         s = requests.get(req_url, headers=headers, verify=True)
         html = s.content
         soup = BeautifulSoup(html, 'html.parser')
         down_ul = soup.find('ul', {'class': 'download-links-dontblock btn-wrap-list'})
-        #print(down_ul)
+        
         mag = down_ul.li.a.get('href')
         torrents.append(Torrent(title, mag, size, seeds, leeches))
-        #print(mag)
-        if index==BASE.limit-1 or status:
+        if index==limit:
             break
 
     return torrents
