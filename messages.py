@@ -149,8 +149,8 @@ def format_and_replace(msg,cid="Unavailable"):
         msg = msg.replace("(wake)","")
     if "(Name)" in msg:
         msg = msg.replace("(Name)", data["name"])
-    if "(Time)" in msg:
-        msg = msg.replace("(Time)", time.strftime('%l:%M%p, %b %d %Y'))
+    #if "(Time)" in msg:
+    #    msg = msg.replace("(Time)", time.strftime('%l:%M%p, %b %d %Y'))
     if "(Time+z)" in msg:
         msg = msg.replace("(Time+z)",  time.strftime('%l:%M%p, %b %d %Y, %z'))
     if "(cid)" in msg:
@@ -182,14 +182,8 @@ def processQueryM(query,cid):
     replies = l33tx.search_gen(query,llength,2)
     for m,n in replies.items():
         processMsg(str(m)+" - \n"+n.title+" : \n"+n.magnet,cid)
-#        processMsg(n.magnet,cid)
-#        print(m," ",n);
-#        for a,b in replies[m].items():
-#            processMsg(a+" : \n"+b,cid)
 
 def processMsg(msg, cid,rep = 0):
-    #asyncio.async(set_focus(cid,10))
-    #time.sleep(2)
     # This is implemented like such - passing true to the function uses the cleverbot function, else the message is sent as such
     if(rep==1):
         #reply = cb.ask(msg)

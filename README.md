@@ -5,10 +5,8 @@
 #### Requirements : `hangups`, `chatterbot`, `feedparser`
 
 Jack is a indev bot forked from a previous project.
-Indev, so I might add anything I wish.
 
-
-A server PC is required to run these scripts, so yes, be sure to have one lying around. Basically, anything with access to the internet and can execute python3 scripts.
+Server required to run the python3 script. For all this, this project is essentially a complicated if then else program. :|
 
 
 ## Files to care about
@@ -41,18 +39,19 @@ Also, it fetches magnet links of defined sources from 'feeds.json'.
 
 Creates a `screen` session that can be detached by CTL+A+D and reattached by `screen -r jack`
 
-#### res.sh
+#### res.sh, res.bat
 **syntax:** `./res.sh`
+**syntax:** `./res.bat`
 
-Sets up an infinite loop that exits only if the bot exits with a status code '0'. Useful to battle network issues.
+Sets up an infinite loop that exits only if the bot exits with a status code '0'. Useful to battle random timeouts that occur during the way.
 
-#### res.bat
 
-Refer above.
+#### l33tx.py, leetx.py and cbot.py
 
-#### et.py and cbot.py
-
-They are used internally by `messages.py` to provide functionality. I used different files so as to be able to differentiate between code.
+Used internally by `messages.py` to provide functionality.
+leetx.py is a generalized search function modified from the pyleetx module from the pypi repo (now broken), which has been patched up to work properly.
+l33tx.py provides for the specifiv search functions and is used by messages.py
+cbot.py is specifically for usage with the bot's awake state, where it will attempt to (and sometimes fail) make conversation.
 
 ###Other kinda important files###
 
@@ -64,9 +63,11 @@ Well, it contains three things, the bot's name, custom responses, and the lines 
 
 Contains information for interpreting '*name*, get me *episode* of *show*'.
 
-#### database.json
+#### database.db
 
 Contains the speech database of `chatterbot`.
+.db aside, its essentially a huge as hell .json file.
+Remove it to reset Jack's progress in learning how to make conversations.
 
 ### Things to know
 
