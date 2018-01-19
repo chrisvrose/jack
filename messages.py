@@ -20,6 +20,7 @@ OFF_THE_RECORD_STATUS_OFF_THE_RECORD
 import cbot
 import l33tx
 
+
 BROADCAST_GROUP_CID = 'UgyT6DYhh50bUOijMVh4AaABAQ'
 REFRESH_TOKEN_PATH = 'refresh_token.txt'    # Stores the refresh token after using a auth token once
 nresp = True
@@ -54,6 +55,10 @@ def main():
 
 @asyncio.coroutine
 def on_state_update(state_update):
+    #print(state_update)
+    if (state_update.HasField('typing_notification')):
+        set_focus(state_update.typing_notification.conversation_id.id)
+        #print("LOL")
     if (state_update.HasField('conversation')):
         #if (state_update.HasField('conversation') and (state_update.conversation.type != 'CONVERSATION_TYPE_ONE_TO_ONE')):
         #print(state_update.conversation)
@@ -98,14 +103,16 @@ def on_state_update(state_update):
         #asyncio.async(set_typing(CONVERSATION_ID,TYPING_TYPE_STOPPED))
 
 
-def set_focus(client, timeout):
+
+def set_focus(conversation_id):
+    print(conversation_id)
     request = hangups.hangouts_pb2.SetFocusRequest(
         request_header=client.get_request_header(),
         conversation_id=hangups.hangouts_pb2.ConversationId(
-            id=args.conversation_id
+            id=conversation_id
         ),
         type=hangups.hangouts_pb2.FOCUS_TYPE_FOCUSED,
-        timeout_secs=int(timeout),
+        timeout_secs=5,
     )
     yield from client.set_focus(request)
 
