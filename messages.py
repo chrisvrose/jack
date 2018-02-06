@@ -218,7 +218,7 @@ def send_message(client,msg,cid):
 
     try:
         # Make the request to the Hangouts API.
-        yield from client.send_chat_message(request)
+        await client.send_chat_message(request)
     except:
         print("ERROR::",sys.exc_info()[0])
 
