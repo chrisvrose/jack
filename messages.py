@@ -58,6 +58,7 @@ def parseDBURI(dburi):
     port = addpport[1]
     db = rhs[1]
     retstr = "host="+addr+" port="+port+" dbname="+db+" user="+user+" password="+passw+" sslmode=require"
+    return(retstr)
 
 if(len(sys.argv)==2):
    global conn
