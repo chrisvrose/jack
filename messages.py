@@ -19,6 +19,7 @@ OFF_THE_RECORD_STATUS_OFF_THE_RECORD
 )
 import cbot
 import l33tx
+import psycopg2
 
 
 BROADCAST_GROUP_CID = 'UgyT6DYhh50bUOijMVh4AaABAQ'
@@ -42,6 +43,25 @@ with open('feeds.json') as data_file:
    print("Loaded Feeds")
 
 print("Name:",data["name"])
+
+if(len(sys.argv)==2):
+   global conn = psycopg.connect(parseDBURI(sys.argv[1]))
+   conn.close()
+
+
+
+def parseDBURI(dburi):
+    t1 = dburi.split("@")
+    lhs = t1[0].split("//")[1].split(":")
+    user = lhs[0]
+    passw = lhs[1]
+    rhs =  t1[1].split("/")
+    addpport = rhs[0].split(":")
+    addr = addpport[0]
+    port = addpport[1]
+    db = rhs[1]
+    retstr = "host="+addr+" port="+port+" dbname="+db+" user="+user+" password="+passw+" sslmode=require"
+    
 
 def main():
     global client
