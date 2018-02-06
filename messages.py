@@ -201,7 +201,7 @@ def processMsg(msg, cid,rep = 0):
 
 
 
-def send_message(client,msg,cid):
+async def send_message(client,msg,cid):
     print("[send_message] - ",msg)
     request = hangups.hangouts_pb2.SendChatMessageRequest(
         request_header=client.get_request_header(),
