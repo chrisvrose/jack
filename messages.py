@@ -66,7 +66,8 @@ if(len(sys.argv)==2):
     cur = conn.cursor()
     if(not os.path.isfile('refresh_token.txt')):
         with open('refresh_token.txt') as file:
-            print(cur.execute("SELECT * from reft;").fetchone())
+            cur.execute("SELECT * from reft;")
+            print(cur.fetchone())
     cur.close()
     conn.close()
     
