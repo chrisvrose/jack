@@ -17,7 +17,7 @@ Except for those suffixed with .old, do whatever you want with them.
 
 ## How do I get set up?
 
-1. Install python (v3) and download/clone jack to your workplace.
+1. Install python (v3.6) and download/clone jack to your workplace.
 
 2. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. If you're in Windows, run the `setup.py` file. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` (Or `sudo -H` if asked to) in Linux._
 
@@ -68,6 +68,10 @@ Contains information for interpreting '*name*, get me *episode* of *show*'.
 Contains the speech database of `chatterbot`.
 .db aside, its essentially a huge as hell .json file.
 Remove it to reset Jack's progress in learning how to make conversations.
+
+#### Procfile
+
+If you wish to use Heroku, the Procfile has been defined for usage
 
 ### Things to know
 
