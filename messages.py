@@ -44,10 +44,6 @@ with open('feeds.json') as data_file:
 
 print("Name:",data["name"])
 
-if(len(sys.argv)==2):
-   global conn
-   conn = psycopg2.connect(parseDBURI(sys.argv[1]))
-   conn.close()
 
 
 
@@ -62,6 +58,11 @@ def parseDBURI(dburi):
     port = addpport[1]
     db = rhs[1]
     retstr = "host="+addr+" port="+port+" dbname="+db+" user="+user+" password="+passw+" sslmode=require"
+
+if(len(sys.argv)==2):
+   global conn
+   conn = psycopg2.connect(parseDBURI(sys.argv[1]))
+   conn.close()
     
 
 def main():
