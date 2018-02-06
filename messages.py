@@ -53,8 +53,7 @@ def main():
     loop.run_until_complete(client.connect())
     
 
-@asyncio.coroutine
-def on_state_update(state_update):
+async def on_state_update(state_update):
     #print(state_update)
     if (state_update.HasField('typing_notification')):
         set_focus(state_update.typing_notification.conversation_id.id)
