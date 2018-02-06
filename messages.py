@@ -45,7 +45,8 @@ with open('feeds.json') as data_file:
 print("Name:",data["name"])
 
 if(len(sys.argv)==2):
-   global conn = psycopg.connect(parseDBURI(sys.argv[1]))
+   global conn
+   conn = psycopg.connect(parseDBURI(sys.argv[1]))
    conn.close()
 
 
