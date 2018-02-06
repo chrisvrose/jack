@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+# Used to interact with the beautiful site
+
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus

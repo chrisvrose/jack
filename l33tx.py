@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+
+# This is the general search functions
+
 from urllib.request import urlopen, Request
 import feedparser
 import html

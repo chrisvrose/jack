@@ -227,7 +227,11 @@ async def send_message(client,msg,cid):
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Interrupt')
+        sys.exit(0)
 else:
     print("What are you trying to do? This module is usually run by main()")
     print("[get_message]:loaded")
