@@ -65,9 +65,10 @@ if(len(sys.argv)==2):
     conn = psycopg2.connect(parseDBURI(sys.argv[1]))
     cur = conn.cursor()
     if(not os.path.isfile('refresh_token.txt')):
-        with open('refresh_token.txt') as file:
-            cur.execute("SELECT * from reft;")
-            print(cur.fetchone())
+        with open('refresh_token.txt',w+) as file:
+            cur.execute('SELECT * from reft;')
+            b = cur.fetchone()
+            file.write(b[1])
     cur.close()
     conn.close()
     
