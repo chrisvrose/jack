@@ -2,4 +2,5 @@ hangups
 chatterbot
 feedparser
 bs4
+psycopg2
 
