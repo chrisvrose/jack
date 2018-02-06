@@ -46,7 +46,7 @@ print("Name:",data["name"])
 
 if(len(sys.argv)==2):
    global conn
-   conn = psycopg.connect(parseDBURI(sys.argv[1]))
+   conn = psycopg2.connect(parseDBURI(sys.argv[1]))
    conn.close()
 
 
