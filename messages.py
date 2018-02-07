@@ -59,7 +59,7 @@ def parseDBURI(dburi):
 
 # Check how to run if there's a argument passed to the program
 if('DATABASE_URL' in os.environ):
-    conn = psycopg2.connect(parseDBURI(os.environ['DATABASE_URL'])
+    conn = psycopg2.connect(parseDBURI(os.environ['DATABASE_URL']))
     cur = conn.cursor()
     if((not os.path.isfile('refresh_token.txt')) and len(sys.argv)==1):
         with open('refresh_token.txt','w+') as file:
