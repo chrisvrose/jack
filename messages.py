@@ -267,7 +267,10 @@ if __name__ == '__main__':
                     cur = conn.cursor()
                     if(not os.path.isfile('refresh_token.txt')):
                         with open('refresh_token.txt','w+') as file:
-                            cur.execute('update reft set storage=\''+file.read()+'\' where typev=\'reft\';')
+                            b = file.read()
+                            cur.execute('update reft set storage=\''+b+'\' where typev=\'reft\';')
+                            c = cur.fetchone()
+                            print(b+" "+c)
                     cur.close()
                     conn.close()
         sys.exit(0)
