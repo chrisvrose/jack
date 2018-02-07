@@ -63,7 +63,7 @@ def parseDBURI(dburi):
 if(len(sys.argv)>1):
     conn = psycopg2.connect(parseDBURI(sys.argv[1]))
     cur = conn.cursor()
-    if(not os.path.isfile('refresh_token.txt') and len(sys.argv)==2):
+    if((not os.path.isfile('refresh_token.txt')) and len(sys.argv)==2):
         with open('refresh_token.txt','w+') as file:
             cur.execute('SELECT * from reft;')
             b = cur.fetchone()
@@ -270,7 +270,7 @@ if __name__ == '__main__':
                             b = file.read()
                             cur.execute('update reft set storage=\''+b+'\' where typev=\'reft\';')
                             conn.commit()
-                            print(b+" "+c)
+                            print(b)
                     cur.close()
                     conn.close()
         sys.exit(0)
