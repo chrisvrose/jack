@@ -255,7 +255,7 @@ async def send_message(client,msg,cid):
 def sigterm_handler(_signo=0, _stack_frame=0):
     if('DATABASE_URL' in os.environ):
         with open('refresh_token.txt') as file:
-                conn = psycopg2.connect(parseDBURI(sys.argv[1]))
+                conn = psycopg2.connect(parseDBURI(os.environ['DATABASE_URL']))
                 cur = conn.cursor()
                 if(os.path.isfile('refresh_token.txt')):
                     with open('refresh_token.txt','r') as file:
