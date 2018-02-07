@@ -8,7 +8,7 @@ if 'DYNO' in os.environ:
 	chatbot = ChatBot(
 		'Jack Carlson',
 		trainer='chatterbot.trainers.ChatterBotCorpusTrainer',
-	        database_uri=os.environ('DATABASE_URL')
+	        database_uri=os.environ['DATABASE_URL']
 	)
 else:
 	chatbot = ChatBot(
