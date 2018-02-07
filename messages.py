@@ -261,7 +261,7 @@ def sigterm_handler(_signo=0, _stack_frame=0):
                 if(os.path.isfile('refresh_token.txt')):
                     with open('refresh_token.txt','r') as file:
                         b = file.read()
-                        cur.execute('update reft set storage=\''+b+'\' where ty$
+                        cur.execute('update reft set storage=\''+b+'\' where typev=\'reft\';')
                         conn.commit()
                         print(b)
                 cur.close()
