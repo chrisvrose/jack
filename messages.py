@@ -66,11 +66,6 @@ if(len(sys.argv)>1):
             cur.execute('SELECT * from reft where typev=\'reft\';')
             b = cur.fetchone()
             file.write(b[1])
-    if((not os.path.isfile('database.json')) and len(sys.argv)==2):
-        with open('database.json','w+') as file:
-            cur.execute('SELECT * from reft where typev=\'dbf\';')
-            b = cur.fetchone()
-            file.write(b[1])
     cur.close()
     conn.close()
     
@@ -266,11 +261,6 @@ def sigterm_handler(_signo=0, _stack_frame=0):
                     with open('refresh_token.txt','r') as file:
                         b = file.read()
                         cur.execute('update reft set storage=\''+b+'\' where typev=\'reft\';')
-                        conn.commit()
-                if(os.path.isfile('database.json')):
-                    with open('database.json','r') as file:
-                        b = file.read()
-                        cur.execute('update reft set storage=\''+b+'\' where typev=\'dbf\';')
                         conn.commit()
                 cur.close()
                 conn.close()
