@@ -1,1 +1,1 @@
-worker: ./messages.py $DATABASE_URL
+worker: ./messages.py
