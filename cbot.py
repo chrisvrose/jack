@@ -4,7 +4,7 @@ import os
 
 global chatbot
 
-if 'DYNO' in os.environ:
+if 'DATABASE_URL' in os.environ:
 	chatbot = ChatBot(
 		'Jack Carlson',
 		trainer='chatterbot.trainers.ChatterBotCorpusTrainer',

@@ -58,10 +58,10 @@ def parseDBURI(dburi):
 
 
 # Check how to run if there's a argument passed to the program
-if(len(sys.argv)>1):
-    conn = psycopg2.connect(parseDBURI(sys.argv[1]))
+if('DATABASE_URL' in os.environ):
+    conn = psycopg2.connect(parseDBURI(os.environ['DATABASE_URL'])
     cur = conn.cursor()
-    if((not os.path.isfile('refresh_token.txt')) and len(sys.argv)==2):
+    if((not os.path.isfile('refresh_token.txt')) and len(sys.argv)==1):
         with open('refresh_token.txt','w+') as file:
             cur.execute('SELECT * from reft where typev=\'reft\';')
             b = cur.fetchone()
@@ -253,7 +253,7 @@ async def send_message(client,msg,cid):
 
 
 def sigterm_handler(_signo=0, _stack_frame=0):
-    if(len(sys.argv)>1):
+    if('DATABASE_URL' in os.environ):
         with open('refresh_token.txt') as file:
                 conn = psycopg2.connect(parseDBURI(sys.argv[1]))
                 cur = conn.cursor()
