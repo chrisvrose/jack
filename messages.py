@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 import asyncio
 import hangups
-import sys, os
-import random
-import time
-import json
+import sys, os, signal, random, time, json
 from google.protobuf import descriptor_pb2
 from hangups.hangouts_pb2 import (
 TYPING_TYPE_STARTED, TYPING_TYPE_PAUSED, TYPING_TYPE_STOPPED,
@@ -17,8 +14,7 @@ NOTIFICATION_LEVEL_RING, SEGMENT_TYPE_TEXT, SEGMENT_TYPE_LINE_BREAK,
 SEGMENT_TYPE_LINK, OFF_THE_RECORD_STATUS_ON_THE_RECORD,
 OFF_THE_RECORD_STATUS_OFF_THE_RECORD
 )
-import cbot
-import l33tx
+import cbot, l33tx
 import psycopg2
 
 
@@ -257,25 +253,30 @@ async def send_message(client,msg,cid):
 
 
 
+def sigterm_handler(_signo=0, _stack_frame=0):
+    if(len(sys.argv)>1):
+        with open('refresh_token.txt') as file:
+                conn = psycopg2.connect(parseDBURI(sys.argv[1]))
+                cur = conn.cursor()
+                if(os.path.isfile('refresh_token.txt')):
+                    with open('refresh_token.txt','r') as file:
+                        b = file.read()
+                        cur.execute('update reft set storage=\''+b+'\' where ty$
+                        conn.commit()
+                        print(b)
+                cur.close()
+                conn.close()
+    sys.exit(0)
+
+
 
 if __name__ == '__main__':
+    signal.signal(signal.SIGTERM, sigterm_handler)
     try:
         main()
     except KeyboardInterrupt:
         print('Interrupt')
-        if(len(sys.argv)>1):
-            with open('refresh_token.txt') as file:
-                    conn = psycopg2.connect(parseDBURI(sys.argv[1]))
-                    cur = conn.cursor()
-                    if(os.path.isfile('refresh_token.txt')):
-                        with open('refresh_token.txt','r') as file:
-                            b = file.read()
-                            cur.execute('update reft set storage=\''+b+'\' where typev=\'reft\';')
-                            conn.commit()
-                            print(b)
-                    cur.close()
-                    conn.close()
-        sys.exit(0)
+        sigterm_handler()
 else:
     print("What are you trying to do? This module is usually run by main()")
     print("[get_message]:loaded")
