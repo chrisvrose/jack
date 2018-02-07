@@ -65,7 +65,6 @@ if(len(sys.argv)>1):
         with open('refresh_token.txt','w+') as file:
             cur.execute('SELECT * from reft;')
             b = cur.fetchone()
-            print(b)
             file.write(b[1])
     cur.close()
     conn.close()
@@ -263,7 +262,6 @@ def sigterm_handler(_signo=0, _stack_frame=0):
                         b = file.read()
                         cur.execute('update reft set storage=\''+b+'\' where typev=\'reft\';')
                         conn.commit()
-                        print(b)
                 cur.close()
                 conn.close()
     sys.exit(0)
