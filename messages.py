@@ -46,7 +46,7 @@ print("Name:",data["name"])
 
 
 
-
+# Converts a postgre:// type resource into a string to use for connecting via psycopg2
 def parseDBURI(dburi):
     t1 = dburi.split("@")
     lhs = t1[0].split("//")[1].split(":")
@@ -60,6 +60,8 @@ def parseDBURI(dburi):
     retstr = "host="+addr+" port="+port+" dbname="+db+" user="+user+" password="+passw+" sslmode=require"
     return(retstr)
 
+
+# Check how to run if there's a argument passed to the program
 if(len(sys.argv)>1):
     conn = psycopg2.connect(parseDBURI(sys.argv[1]))
     cur = conn.cursor()
