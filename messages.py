@@ -269,7 +269,7 @@ if __name__ == '__main__':
                         with open('refresh_token.txt','w+') as file:
                             b = file.read()
                             cur.execute('update reft set storage=\''+b+'\' where typev=\'reft\';')
-                            c = cur.fetchone()
+                            conn.commit()
                             print(b+" "+c)
                     cur.close()
                     conn.close()
