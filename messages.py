@@ -266,7 +266,7 @@ if __name__ == '__main__':
                     conn = psycopg2.connect(parseDBURI(sys.argv[1]))
                     cur = conn.cursor()
                     if(os.path.isfile('refresh_token.txt')):
-                        with open('refresh_token.txt','w+') as file:
+                        with open('refresh_token.txt','r') as file:
                             b = file.read()
                             cur.execute('update reft set storage=\''+b+'\' where typev=\'reft\';')
                             conn.commit()
