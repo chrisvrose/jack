@@ -2,12 +2,12 @@
 
 #### NOTE: Highly alpha-grade stuff here. Tread carefully. Code held together by cobwebs.
 
-#### Requirements : `hangups`, `chatterbot`, `feedparser`
+#### Requirements : `hangups`, `chatterbot`, `feedparser`, `psycopb2`
 
 Jack is a indev bot forked from a previous project.
 
 Server required to run the python3 script. For all this, this project is essentially a complicated if then else program. :|
-
+Or Heroku, along with the PostgreSQL plugin,
 
 ## Files to care about
 
@@ -20,6 +20,11 @@ Except for those suffixed with .old, do whatever you want with them.
 1. Install python (v3.6) and download/clone jack to your workplace.
 
 2. Run `pip install -r requirements.txt`. This will install all dependencies. If you get an error like pip is not installed whatever blah, use `pip3 install -r requirements.txt`. If you're in Windows, run the `setup.py` file. _Note: Needs Administrator Command Prompt in Windows. Prefix `sudo` (Or `sudo -H` if asked to) in Linux._
+
+OR
+
+1. Attach to heroku.
+
 
 ## Usage
 
@@ -39,9 +44,8 @@ Also, it fetches magnet links of defined sources from 'feeds.json'.
 
 Creates a `screen` session that can be detached by CTL+A+D and reattached by `screen -r jack`
 
-#### res.sh, res.bat
+#### res.sh
 **syntax:** `./res.sh`
-**syntax:** `./res.bat`
 
 Sets up an infinite loop that exits only if the bot exits with a status code '0'. Useful to battle random timeouts that occur during the way.
 
@@ -65,13 +69,13 @@ Contains information for interpreting '*name*, get me *episode* of *show*'.
 
 #### database.db
 
+Created only if not on Heroku. Otherwise uses the PostgreSQL server present.
 Contains the speech database of `chatterbot`.
-.db aside, its essentially a huge as hell .json file.
 Remove it to reset Jack's progress in learning how to make conversations.
 
 #### Procfile
 
-If you wish to use Heroku, the Procfile has been defined for usage
+If you wish to use Heroku, the Procfile has been defined for usage with a single worker.
 
 ### Things to know
 
