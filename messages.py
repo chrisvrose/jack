@@ -60,11 +60,10 @@ def parseDBURI(dburi):
     retstr = "host="+addr+" port="+port+" dbname="+db+" user="+user+" password="+passw+" sslmode=require"
     return(retstr)
 
-if(len(sys.argv)==2):
-    global conn
+if(len(sys.argv)>1):
     conn = psycopg2.connect(parseDBURI(sys.argv[1]))
     cur = conn.cursor()
-    if(not os.path.isfile('refresh_token.txt')):
+    if(not os.path.isfile('refresh_token.txt') and len(sys.argv)==2):
         with open('refresh_token.txt','w+') as file:
             cur.execute('SELECT * from reft;')
             b = cur.fetchone()
@@ -262,6 +261,15 @@ if __name__ == '__main__':
         main()
     except KeyboardInterrupt:
         print('Interrupt')
+        if(len(sys.argv)>1):
+            with open('refresh_token.txt') as file:
+                    conn = psycopg2.connect(parseDBURI(sys.argv[1]))
+                    cur = conn.cursor()
+                    if(not os.path.isfile('refresh_token.txt')):
+                        with open('refresh_token.txt','w+') as file:
+                            cur.execute('update reft set storage=\''+file.read()+'\' where typev=\'reft\';')
+                    cur.close()
+                    conn.close()
         sys.exit(0)
 else:
     print("What are you trying to do? This module is usually run by main()")
