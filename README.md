@@ -2,7 +2,7 @@
 
 #### NOTE: Highly alpha-grade stuff here. Tread carefully. Code held together by cobwebs.
 
-#### Requirements : `hangups`, `chatterbot`, `feedparser`, `psycopb2`
+#### Requirements : `hangups`, `chatterbot`, `feedparser`, `psycopb2`, `nltk`
 
 Jack is a indev bot forked from a previous project.
 
