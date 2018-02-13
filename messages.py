@@ -194,6 +194,9 @@ def format_and_replace(msg,cid="Unavailable"):
         msg = msg.replace("llength",str(llength))
     if "(status)" in msg:
         msg = msg.replace("(status)",("awake" if qnresp() else "sleeping"))
+    if "(forget)" in msg:
+        cbot.clear()
+        msg = msg.replace("(forget)","")
     return msg
 
 

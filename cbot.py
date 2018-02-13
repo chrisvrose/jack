@@ -20,3 +20,6 @@ else:
 def ask(query):
 	reply = chatbot.get_response(query)
 	return(str(reply))
+
+def clear():
+	chatbot.storage.drop()
